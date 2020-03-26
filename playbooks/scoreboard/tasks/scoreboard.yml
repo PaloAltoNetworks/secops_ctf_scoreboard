@@ -1,4 +1,9 @@
 ---
+- name: "Create home directory for scoreboard cloning"
+  file:
+    path: "/tmp/scoreboard"
+    state: directory
+
 - git:
     repo: 'https://github.com/CTFd/CTFd.git'
-    dest: /tmp
+    dest: /tmp/scoreboard
