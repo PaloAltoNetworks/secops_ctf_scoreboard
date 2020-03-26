@@ -7,7 +7,7 @@
     "type": "amazon-ebs",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
-    "region": "us-east-1",
+    "region": "us-west-2",
     "source_ami_filter": {
       "filters": {
         "virtualization-type": "hvm",
@@ -20,5 +20,11 @@
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
     "ami_name": "panicorns-ctf-scoreboard {{timestamp}}"
-  }]
+  }],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "./playbooks/scoreboard.yml"
+    }
+  ]
 }

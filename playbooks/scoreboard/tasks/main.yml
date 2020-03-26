@@ -1,0 +1,4 @@
+---
+- name: Setup Scoreboard
+  import_tasks: scoreboard.yml
+  tags: install_python
