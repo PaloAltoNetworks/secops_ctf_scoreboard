@@ -25,3 +25,16 @@ Found tfvars file in /Users/fdiaz/workspace/ctf_scoreboard/terraform/aws/terrafo
 
 No errors. All clean and green.
 ```
+
+## Initialize Terraform
+
+- Now do `cd aws` and type `terraform init` to get started.
+- You should see a message as below
+
+```
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+```

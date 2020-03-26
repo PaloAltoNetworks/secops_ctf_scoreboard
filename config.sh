@@ -129,6 +129,22 @@ function config_apple {
     else
       echo "found awscli"
     fi
+    if ! packer version ; then
+      echo -e "${CYAN}"
+      echo "install packer"
+      brew install packer
+      echo -e "${NC}"
+    else
+      echo "found packer"
+    fi
+    if ! which ansible-playbook ; then
+      echo -e "${CYAN}"
+      echo "install ansible-playbook"
+      brew install ansible
+      echo -e "${NC}"
+    else
+      echo "found ansible"
+    fi
     # alternative awscli install method, requires brew
     #cd /tmp && curl -o awscli.zip https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
     #unzip /tmp/awscli.zip

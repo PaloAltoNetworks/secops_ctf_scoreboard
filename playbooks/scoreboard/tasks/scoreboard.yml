@@ -1,0 +1,4 @@
+---
+- git:
+    repo: 'https://github.com/CTFd/CTFd.git'
+    dest: /tmp
