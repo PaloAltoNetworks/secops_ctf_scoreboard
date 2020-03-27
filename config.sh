@@ -55,29 +55,65 @@ function check_terraform {
   fi
 }
 
+#################################
+# Confirm digital ocean TF_VARS #
+#################################
+function check_do_vars {
+  echo -e "${LPURP}***** Check TF_VARS for Digital Ocean *****${NC}"
+  TF=`cat ~/.bashrc | grep TF_VAR | cut -d'=' -f1`
+  if [ -z "$TF" ] ; then
+    echo -e "${CYAN}"
+    echo "Found properly formatted DigitalOcean credentials"
+    echo -e "${NC}"
+  else
+    echo -e "${YELLOW}"
+    echo "Digial Ocean TF_VARS not found in .bashrc!"
+    echo "Digital Ocean provisioning won't work right."
+    echo ""
+    echo "Be sure these are added to the end of .bashrc:"
+    echo ""
+    echo "export TF_VAR_do_token="
+    echo "export TF_VAR_pub_key="
+    echo "export TF_VAR_pvt_key="
+    echo "export TF_VAR_ssh_fingerprint="
+    echo -e "${NC}"
+    ERROR_COUNTER=$((ERROR_COUNTER+1))
+  fi
+}
+
+#########################
+# Check for puppet-lint #
+#########################
+function check_puppet_lint {
+  echo -e "${LPURP}***** Check if puppet-lint is installed *****${NC}"
+  PL="$(gem list -i '^puppet-lint$')"
+  if [ ! "$PL" ] ; then
+    echo -e "${YELLOW}"
+    echo "Could not find puppet-lint installed on this host"
+    echo "Get it from http://puppet-lint.com/"
+    echo -e "${NC}"
+    # This isn't really a showstopper so not counting as an error
+    #ERROR_COUNTER=$((ERROR_COUNTER+1))
+  fi
+}
+
 #############################
 # Confirm AWS configuration #
 #############################
 function check_aws {
-  echo -e "${LPURP}***** Confirm AWS Configuration *****"
-  if [ -f ~/.aws/credentials ] ; then
-    echo -e "${CYAN}"
-    if aws --version ; then
-      echo "AWS Configuration looking good..."
-    else
-      echo -e "${YELLOW}"
-      echo "You need to nstall awscli. Look here:"
-      echo "https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html"
-      echo -e "${NC}"
-      exit 1
-    fi
-  else
+  echo -e "${LPURP}***** Confirm AWS Configuration *****${NC}"
+  MY_PATH=`eval echo "~$SUDO_USER"`
+  if ! ls $MY_PATH/.aws/credentials ; then
     echo -e "${YELLOW}"
     echo "No ~/.aws/credentials found!"
     echo "Follow the steps at: http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html"
     echo ""
     echo -e "${NC}"
     ERROR_COUNTER=$((ERROR_COUNTER+1))
+  else
+    echo -e "${LPURP}"
+    echo "FOUND: $MY_PATH/.aws/credentials"
+    echo -e "${NC}"
   fi
 }
 
@@ -103,6 +139,79 @@ function check_terra_config {
     echo "Found tfvars file in ${PWD}/terraform/aws/terraform.tfvars"
     echo -e "${NC}"
   fi
+}
+
+#############################
+# Do stuff for Debian based #
+#############################
+function config_deb {
+  echo -e "${LPURP}***** Do the Debian Setup *****${NC}"
+  grep -Ei 'debian|buntu|mint' /etc/*release
+  sudo apt-get install software-properties-common gnupg git \
+  python-pip mlocate awscli
+  echo -e "${CYAN}"
+
+  PYVER=`python3 -V`
+  if [ -z "$PYVER" ] ; then
+    echo "$PYVER"
+    sudo apt-get -y install python3-pip
+  else
+    echo "need to install python?"
+  fi
+  if which aws ; then
+    aws --version
+  else
+    echo "Need to install awscli"
+    python3 -m pip install awscli
+    #pip install awscli --upgrade --user
+  fi
+  if which ansible; then
+    ansible --version
+  else
+    echo "Need to install awscli"
+    python3 -m pip install awscli
+    #pip install awscli --upgrade --user
+  fi
+  if ! which packer ; then
+    wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip
+    unzip packer_1.5.5_linux_amd64.zip
+    mv packer /usr/local/bin
+    rm packer_1.5.5_linux_amd64.zip
+  else
+    echo "Found Packer"
+  fi
+  echo -e "${NC}"
+}
+
+#######################
+# Do stuff for RedHat #
+#######################
+function config_redhat {
+  echo -e "${LPURP}***** Do the RedHat setup *****${NC}"
+  sudo yum update -y
+  sudo yum groupinstall 'Development Tools'
+}
+
+########################
+# Do stuff for FreeBSD #
+########################
+
+########################
+# Do stuff for OpenBSD #
+########################
+function config_obsd {
+  echo -e "${LPURP}***** Do the Setup for OpenBSD *****${NC}"
+  echo 'export PKG_PATH=ftp://mirror.planetunix.net/pub/OpenBSD/`uname -r`/packages/`machine -a`/' >> ~/.profile
+  #pkg_add -Uu
+  pkg_add ftp://mirror.planetunix.net/OpenBSD/`uname -r`/packages/`machine -a`/python-2.7.13p0.tgz
+  ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
+  ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
+  ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
+  #ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
+  pkg_add py-pip py-boto
+  pkg_add -i -v bash
+  pip install awscli aws-shell terraform
+  #/usr/bin/doas -u root pkg_add -v bash
 }
 
 ######################
