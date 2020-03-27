@@ -1,4 +1,8 @@
 ---
+#- name: Install Docker
+# import_tasks: docker.yml
+#  tags: install_docker
+
 - name: Setup Scoreboard
   import_tasks: scoreboard.yml
   tags: install_python
