@@ -1,43 +1,13 @@
-workflow "packer build template-y" {
-  resolves = "scoreboard"
-  on = "release"
-}
+name: Validate packer template file in a directory
 
-action "filter-packer-build-label" {
-  uses = "actions/bin/filter@master"
-  args = "label packerbuild"
-  secrets = ["GITHUB_TOKEN"]
-}
-
-action "scoreboard" {
-  uses = "dawitnida/packer-github-actions/build@master"
-  needs = "scoreboard"
-  secrets = [
-    "GITHUB_TOKEN",
-  ]
-  env = {
-    TEMPLATE_FILE_NAME = "scoreboard.json"
-  }
-}
-
-action "scoreboard" {
-  uses = "dawitnida/packer-github-actions/inspect@master"
-  needs = "scoreboard"
-  secrets = [
-    "GITHUB_TOKEN",
-  ]
-  env = {
-    TEMPLATE_FILE_NAME = "scoreboard.json"
-  }
-}
-
-action "scoreboard" {
-  uses = "dawitnida/packer-github-actions/validate@master"
-  needs = "filter-packer-build-label"
-  secrets = [
-    "GITHUB_TOKEN",
-  ]
-  env = {
-    TEMPLATE_FILE_NAME = "scoreboard.json"
-  }
-}
+on:
+  pull_request:
+jobs:
+  packer_validate:
+    runs-on: hashicorp/packer:1.5.4
+    steps:
+      - name: Packer validate template-y without argument
+        uses: dawitnida/packer-github-actions/validate@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEMPLATE_FILE_NAME: ${{ env.TEMPLATE_FILE_NAME }}
