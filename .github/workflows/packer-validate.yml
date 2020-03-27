@@ -1,0 +1,46 @@
+---
+  name: Packer
+  
+  on:
+    push:
+  
+  jobs:
+    packer:
+      runs-on: ubuntu-latest
+      name: packer
+  
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v2
+        - name: Python setup
+          uses: actions/setup-python@v1
+          with:
+            python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+            architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+        - name: Install Python Goodies
+          run: python -m pip install ansible && python -m pip list -v | grep ansible
+
+        # fix backwards incompatibilities in template
+        - name: Fix Template
+          uses: operatehappy/packer-github-actions@master
+          with:
+            command: fix
+            target: scoreboard.json
+  
+        # validate templates
+        - name: Validate Template
+          uses: operatehappy/packer-github-actions@master
+          with:
+            command: validate
+            arguments: -syntax-only
+            target: scoreboard.json
+  
+        # build artifact
+        #- name: Build Artifact
+        #  uses: operatehappy/packer-github-actions@master
+        #  with:
+        #    command: build
+        #    target: scoreboard.json
+        #    arguments: "-color=false -on-error=abort"
+  
+        # additional steps to process artifacts
