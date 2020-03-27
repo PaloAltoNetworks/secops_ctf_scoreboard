@@ -4,3 +4,5 @@
     - name: Set up Scoreboard
       import_role:
         name: scoreboard
+  become: true
+  become_user: root
