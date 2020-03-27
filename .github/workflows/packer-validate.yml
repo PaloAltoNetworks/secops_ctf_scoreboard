@@ -4,10 +4,9 @@ on:
   pull_request:
 jobs:
   packer_validate:
-    runs-on: hashicorp/packer:1.5.5
     steps:
-      - name: Packer validate template-y without argument
-        uses: dawitnida/packer-github-actions/validate@master
+      - name: Packer validate
+        uses: dawitnida/packer-validate-action@v1.0.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TEMPLATE_FILE_NAME: ${{ env.TEMPLATE_FILE_NAME }}
