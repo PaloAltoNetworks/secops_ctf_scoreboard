@@ -5,7 +5,7 @@ resource "aws_instance" "franklin-iac" {
     #agent       = false
     private_key = "${file("/home/thedevilsvoice/.ssh/do_terra_rsa")}"
   }
-  ami           = "ami-d2c924b2"
+  ami           = "${var.ami}"
   instance_type = "t2.micro"
   key_name      = "${var.key_name}"
   # comma separated list of groups

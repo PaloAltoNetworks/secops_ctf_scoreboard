@@ -24,13 +24,7 @@
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "./playbooks/scoreboard.yml",
-      "ansible_env_vars": [ 
-        "become=true",
-        "become_method=sudo",
-        "ANSIBLE_HOST_KEY_CHECKING=False", 
-        "ANSIBLE_SSH_ARGS='-t -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'", 
-        "ansible_python_interpreter=/usr/bin/python3" ]
+      "playbook_file": "./playbooks/scoreboard.yml"
     }
   ]
 }
