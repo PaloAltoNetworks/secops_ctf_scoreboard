@@ -36,11 +36,11 @@
             target: scoreboard.json
   
         # build artifact
-        - name: Build Artifact
-          uses: operatehappy/packer-github-actions@master
-          with:
-            command: build
-            target: scoreboard.json
-            arguments: "-color=false -on-error=abort"
+        #- name: Build Artifact
+        #  uses: operatehappy/packer-github-actions@master
+        #  with:
+        #    command: build
+        #    target: scoreboard.json
+        #    arguments: "-color=false -on-error=abort"
   
         # additional steps to process artifacts
