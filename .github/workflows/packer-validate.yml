@@ -25,7 +25,7 @@
           with:
             command: validate
             arguments: -syntax-only
-            target: scoreboard.json
+            target: artifacts.pkr.json scoreboard.json
   
         # build artifact
         - name: Build Artifact
