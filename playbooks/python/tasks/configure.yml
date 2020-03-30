@@ -1,0 +1,10 @@
+---
+- name: Install setup_python3.sh
+  template:
+    src: setup_python3.sh
+    dest: "{{ home_directory }}/setup_python3.sh"
+    mode: 0755
+
+- name: Execute setup_python3.sh
+  command: "{{ home_directory }}/setup_python3.sh"
+  changed_when: true

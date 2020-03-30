@@ -22,21 +22,17 @@ variable "vpc-fullcidr" {
 }
 
 variable "key_name" {
-  default     = "do_terra_rsa"
+  default     = "scoreboard"
   description = "Name of your SSH key in EC2"
 }
 
 # You can update this to match your personal public SSH key half.
 variable "public_key" {
-  default="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDABuFmeNzJtKfq/BhI5okytxj9a7J+eDlUCPozZdasQyXq3DSy4pOUO3brYMSiTCUX0eQseUVXjzUO4C7OojZKZ8dONaiUrBvj8icKB137mDzq5iSAZrbdnIQdjiNZC3/DQ6W0PMHk4SZez0Z5oKikbP/l/E8zRxnfWJHXiogYogOdtqxZdx4SshDy2iPsReINFJNIwJJB0cbZB35fhxRAghSmf3MWjkPeHzLE+6fZD3HszzZ7g7ngDN1E5MRqH06tqeRDboTypOrH5CcUjergq2xwJ9/eSdbtrKY4uGG5U/6RTo0hA/kcLW9AmBsHlCvpn5YnLKhswETCkEOCsqHZ thedevilsvoice@grimoire"
-  description = "SSH Public key half to use for centos on the new host"
+  default="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDU9GRwNI2y9NuElgDgLcfDuGstEZiHaMT/2Gs0prPUFN5egpqzJy1qrf7VLf7U4CyxU8QXnhPhzE9qLnDmqFMWpfyaw4F16YhDzxESZHZ6gqKcPhHRPTwVyIdF9nhH0bh9jZxdvUMuUO+G7T+kvKTcrLlmxnbE6dd/UOcZesuyjNeyPfPkYPXrx40LtXwEvk/EoaTQjjlBxOh2YWevHIVEeKgIXDd96UfrQT7ywPT9klBPEc7GxgDMNFKJ1bSWR51TOETRAfFmEnoc0pmULpvzQgj28ppxUZCEXBt8OImkRSG+rPypjIWIEIa54ap3kL9DeJbK6iC9DdXzmCp004EdZdpXqWzLkHOWL58En0c4puRVv+26DGgwwk8sTbyRIDBbkRNiR2HGpasK7SyMy7xdko8W2TScHnXYc/G9R9T4oEcnyN1rY65uNkfKg5QCC2NHDb+vShKHTQ6/wbvtC7sDt7RM6IYwfv46+Wo3D8uYNwow3Ny71EwtdxRkkn2tc5SAyYxBo7N0kFSPKrr15/fUY2TeYV/r/x9xa4cgg/VV8GOxwg/vQxyg9YZNpdiXSM9FCQMtv8wObci4tHpiySDYPo55Aga3EW6Jut856KP15EXPYWml/sHCbEvJUByk3CTt0wW2nxNSl9KUfcQrKGmW3YTW9LhoFDqY1WUHBjdHtQ== thedevilsvoice@protonmail.ch"
+  description = "SSH Public key half to use for ubuntu on the new host"
 }
 
 variable "key_path" {
-  default = "/home/thedevilsvoice/.ssh/do_terra_rsa"
+  default = "~/.ssh/id_rsa"
   description = "Path to your SSH private key half on local dev machine"
-}
-
-variable use_public_ip { 
-  default = true 
 }

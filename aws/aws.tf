@@ -34,11 +34,11 @@ resource "aws_subnet" "franklin-iac" {
   map_public_ip_on_launch = true
 }
 
-resource "aws_key_pair" "franklin" {
+resource "aws_key_pair" "id_rsa" {
   key_name   = "${var.key_name}"
   public_key = "${var.public_key}"
 }
 
 output "sensor_ip" {
-  value = "Now do this: \n ssh -i ${var.key_path} -l centos ${aws_instance.franklin-iac.public_ip}"
+  value = "Now do this: \n ssh -i ${var.key_path} -l ubuntu ${aws_instance.franklin-iac.public_ip}"
 }

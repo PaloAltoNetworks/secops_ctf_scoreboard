@@ -1,0 +1,10 @@
+---
+# tasks file for python
+
+- name: Install OS Packages
+  import_tasks: packages.yml
+  tags: install_yum_packages
+
+- name: Setup Python
+  import_tasks: configure.yml
+  tags: install_python

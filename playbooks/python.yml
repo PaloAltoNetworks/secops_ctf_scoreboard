@@ -4,6 +4,3 @@
     - name: Set up Python
       import_role:
         name: python
-    - name: Set up Scoreboard
-      import_role:
-        name: scoreboard
