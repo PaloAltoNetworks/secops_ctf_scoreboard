@@ -13,9 +13,12 @@ variable "ami" {
   default     = "ami-03c54f372e6caf1d3"
 }
 
-variable "vpc-fullcidr" {
-  default     = "172.16.0.0/16"
-  description = "vpc cdir"
+variable "vpc_cidr" {
+  default = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  default = "10.0.1.0/24"
 }
 
 variable "key_name" {

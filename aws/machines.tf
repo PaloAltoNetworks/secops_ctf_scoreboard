@@ -1,28 +1,20 @@
-resource "aws_instance" "franklin-iac" {
-  ami           = "${var.ami}"
+module "scoreboard" {
+  source = "github.com/mrichardson03/terraform-aws-instance.git?ref=v0.0.2"
+
+  key_name = var.key_name
+
+  vpc_id     = module.vpc.vpc_id
+  subnet_id  = module.vpc.public_subnet_ids[0]
+  private_ip = "10.0.1.6"
+  sg_id      = aws_security_group.iac_sec_grp.id
+
   instance_type = "t2.micro"
-  key_name      = "${var.key_name}"
+  ami           = var.ami
 
-  # comma separated list of groups
-  vpc_security_group_ids      = ["${aws_security_group.iac_sec_grp.id}"]
-  subnet_id                   = "${aws_subnet.franklin-iac.id}"
-  associate_public_ip_address = "true"
-
-  root_block_device {
-    volume_size           = "10"
-    volume_type           = "standard"
-    delete_on_termination = "true"
-  }
+  create_eip = true
 
   tags = {
-    Name = "ubuntu-ctf-scoreboard"
-  }
-
-  connection {
-    user = "ubuntu"
-
-    //  timeout = "1m"
-    //  #agent       = false
-    //  private_key = "${file("~/.ssh/id_rsa")}"
+    Name        = "scoreboard"
+    Environment = "CTF-Scoreboard"
   }
 }
