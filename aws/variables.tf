@@ -34,9 +34,23 @@ variable "ami" {
   default     = "ami-02e30ba14d8ffa6e6"
 }
 
+<<<<<<< HEAD
 variable "fw_ami" {
   description = "PAN-OS 9.0.6 (BYOL) in us-west-2."
   default     = "ami-09caf56db45f96bca"
+=======
+variable "vpc_cidr" {
+  default = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  default = "10.0.1.0/24"
+}
+
+variable "key_name" {
+  default     = "scoreboard"
+  description = "Name of your SSH key in EC2"
+>>>>>>> 8084a56... Use modules for VPC and AWS instance.
 }
 
 # You can update this to match your personal public SSH key half.
