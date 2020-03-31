@@ -11,7 +11,7 @@ if [ -n "$(command -v apt)" ];
 then
   apt update
   DEBIAN_FRONTEND="noninteractive" apt install -y wget gcc make zlib1g-dev libffi-dev libssl-dev libncurses5-dev libsqlite3-dev \
-      libreadline-dev libtk8.5 libgdm-dev libdb4o-cil-dev libpcap-dev
+      libreadline-dev libtk8.5 libgdm-dev libdb4o-cil-dev libpcap-dev libnss3-dev libreadline5-dev
 fi 
 
 if [ ! -f "/tmp/Python-3.7.3.tgz" ];

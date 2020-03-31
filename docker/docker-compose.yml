@@ -6,4 +6,4 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     volumes:
-      - ..:/app
+      - ..:/tmp/project

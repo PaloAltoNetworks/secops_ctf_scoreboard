@@ -1,5 +1,5 @@
   
-.PHONY: docker test
+.PHONY: docker packer test
 
 REQS := requirements.txt
 # Used for colorizing output of echo messages
@@ -19,7 +19,7 @@ for line in sys.stdin:
 export PRINT_HELP_PYSCRIPT
 
 help: 
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 clean: ## Cleanup all the things
 	find . -name '*.pyc' | xargs rm -rf
@@ -28,17 +28,16 @@ clean: ## Cleanup all the things
 
 docker: ## do the docker stuff
 	$(MAKE) print-status MSG="Building with docker-compose"
-	@if [ -f /.dockerenv ]; then echo "Don't run make docker inside docker container" && exit 1; fi;
+	@if [ -f /.dockerenv ]; then echo "Don't run make docker inside docker container" && exit 1; fi
 	docker-compose -f docker/docker-compose.yml -p 8080:8080 build scoreboard
-	#$(MAKE) python
 	$(MAKE) python_three
 	@echo "Now type: docker-compose -f docker/docker-compose.yml -p 8080:8080 run scoreboard /bin/bash"
 
 packer: ## Build and amazon AMI for the scoreboard
 	$(MAKE) print-status MSG="Validate Packer Configuration..."
 	packer validate scoreboard.json
-	$(MAKE) print-status MSG="Build AMI with Packer..."
-	packer build scoreboard.json
+	#$(MAKE) print-status MSG="Build AMI with Packer..."
+	#packer build scoreboard.json
 
 print-status:
 	@:$(call check_defined, MSG, Message to print)
@@ -46,9 +45,6 @@ print-status:
 
 python_three: ## set up the python3 environment
 	$(MAKE) print-status MSG="Set up the Python3 environment"
-	#if [ ! -e "/usr/local/bin/python3" ]; then ln -s /usr/local/bin/python3.7 /usr/local/bin/python3; fi
-	cd /app && LD_LIBRARY_PATH=/usr/local/lib python3 -m venv myvenv; \
-	. myvenv/bin/activate; \
-	LD_LIBRARY_PATH=/usr/local/lib python3 -m pip install wheel; \
-	if [ -e "/app/requirements.txt" ]; then LD_LIBRARY_PATH=/usr/local/lib python3 -m pip install -rrequirements.txt; fi; \
-	if [ -e "/app/requirements-test.txt" ]; then LD_LIBRARY_PATH=/usr/local/lib python3 -m pip install -rrequirements-test.txt; fi
+	python3 -m pip install wheel
+	if [ -e "/tmp/project/requirements.txt" ]; then python3 -m pip install -rrequirements.txt; fi
+	if [ -e "/tmp/project/requirements-test.txt" ]; then python3 -m pip install -rrequirements-test.txt; fi
