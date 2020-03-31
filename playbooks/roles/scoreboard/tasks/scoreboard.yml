@@ -3,6 +3,8 @@
   file:
     path: "{{ home_directory }}"
     state: directory
+    mode: 0755
+    recurse: true
 
 - git:
     repo: 'https://github.com/CTFd/CTFd.git'
