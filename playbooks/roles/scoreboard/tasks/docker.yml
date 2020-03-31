@@ -2,10 +2,6 @@
 # DO Community Playbooks: Docker
 #################################################
 ---
-- name: recursive deps
-  shell:
-    cmd: apt upgrade && apt install -y python3-apt
-
 - name: Install required system packages
   apt:
     pkg:
@@ -13,9 +9,7 @@
     - ca-certificates
     - curl
     - software-properties-common
-    - python3-pip
     - virtualenv
-    - python3-setuptools
 
 - name: Add Docker GPG apt Key
   apt_key:

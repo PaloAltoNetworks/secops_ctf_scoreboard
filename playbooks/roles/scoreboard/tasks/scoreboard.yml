@@ -1,9 +1,9 @@
 ---
 - name: "Create home directory for scoreboard cloning"
   file:
-    path: "/tmp/scoreboard"
+    path: "{{ home_directory }}"
     state: directory
 
 - git:
     repo: 'https://github.com/CTFd/CTFd.git'
-    dest: /tmp/scoreboard
+    dest: "{{ home_directory }}"
