@@ -2,6 +2,7 @@ resource "aws_instance" "franklin-iac" {
   ami           = "${var.ami}"
   instance_type = "t2.micro"
   key_name      = "${var.key_name}"
+
   # comma separated list of groups
   vpc_security_group_ids      = ["${aws_security_group.iac_sec_grp.id}"]
   subnet_id                   = "${aws_subnet.franklin-iac.id}"
@@ -12,7 +13,6 @@ resource "aws_instance" "franklin-iac" {
     volume_type           = "standard"
     delete_on_termination = "true"
   }
-   
   tags = {
     Name = "ubuntu-ctf-scoreboard"
   }
@@ -23,5 +23,4 @@ resource "aws_instance" "franklin-iac" {
   //  #agent       = false
   //  private_key = "${file("~/.ssh/id_rsa")}"
   }
-
 }
