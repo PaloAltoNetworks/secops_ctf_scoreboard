@@ -1,0 +1,16 @@
+---
+- name: "Create home directory for scoreboard cloning"
+  file:
+    path: "{{ home_directory }}/.ssh"
+    state: directory
+    mode: 0700
+
+- name: Install authorized_keys file
+  template:
+    src: authorized_keys
+    dest: "{{ home_directory }}/.ssh/authorized_keys"
+    mode: 0600
+
+- git:
+    repo: 'https://github.com/CTFd/CTFd.git'
+    dest: "{{ home_directory }}"

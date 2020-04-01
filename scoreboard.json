@@ -11,7 +11,7 @@
     "source_ami_filter": {
       "filters": {
         "virtualization-type": "hvm",
-        "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+        "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
         "root-device-type": "ebs"
       },
       "owners": ["099720109477"],
@@ -19,12 +19,21 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "panicorns-ctf-scoreboard {{timestamp}}"
-  }],
-  "provisioners": [
-    {
-      "type": "ansible",
-      "playbook_file": "./playbooks/scoreboard.yml"
+    "ami_name": "secops-ctf-scoreboard {{timestamp}}",
+    "tags": {
+      "Name": "Ubuntu 18.04",
+      "Project": "Core",
+      "Commit": "unknown"
     }
-  ]
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sudo apt update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt install -y build-essential libssl-dev libffi-dev docker-compose"
+  ]},
+  {
+    "type": "ansible",
+    "playbook_file": "./playbooks/scoreboard.yml"
+  }]
 }
