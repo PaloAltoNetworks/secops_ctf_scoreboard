@@ -24,3 +24,4 @@ resource "aws_instance" "franklin-iac" {
   //  private_key = "${file("~/.ssh/id_rsa")}"
   }
 }
+
