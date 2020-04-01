@@ -38,9 +38,8 @@ resource "aws_route_table_association" "private" {
 }
 
 module "fw_bootstrap" {
-  # source  = "stealthllama/panos-bootstrap/aws"
-  # version = "v0.1.0"
-  source = "github.com/mrichardson03/terraform-aws-panos-bootstrap-1?ref=mrichardson03-patch-1"
+  source  = "stealthllama/panos-bootstrap/aws"
+  version = "v0.1.1"
 
   hostname = "ctf-firewall"
 }
