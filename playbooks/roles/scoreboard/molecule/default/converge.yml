@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: Set up scoreboard
+      import_role:
+        name: scoreboard
+    - name: Set up Python
+      import_role:
+        name: python

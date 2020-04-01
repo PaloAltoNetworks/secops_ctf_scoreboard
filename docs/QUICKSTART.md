@@ -1,11 +1,11 @@
 # QUICKSTART
 
-- Run the "config" script in this repo. 
+- Run the "config" script in this repo.
 - Correct the errors until you get output as below.
 
 ```
 
-franklin@reticulum ~ 🔬  bash ./config.sh 
+franklin@reticulum ~ 🔬  bash ./config.sh
 
 ***** Do the Setup for Mac *****
 /usr/local/bin/brew
