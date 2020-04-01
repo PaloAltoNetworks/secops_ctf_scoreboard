@@ -18,7 +18,6 @@ module "vpc" {
   }
 }
 
-# TODO: Do the private route table manipulation in the VPC module.
 resource "aws_route_table" "private" {
   vpc_id = module.vpc.vpc_id
 
@@ -36,6 +35,14 @@ resource "aws_route_table" "private" {
 resource "aws_route_table_association" "private" {
   subnet_id      = module.vpc.private_subnet_ids[0]
   route_table_id = aws_route_table.private.id
+}
+
+module "fw_bootstrap" {
+  # source  = "stealthllama/panos-bootstrap/aws"
+  # version = "v0.1.0"
+  source = "github.com/mrichardson03/terraform-aws-panos-bootstrap-1?ref=mrichardson03-patch-1"
+
+  hostname = "ctf-firewall"
 }
 
 module "firewall" {
@@ -57,6 +64,9 @@ module "firewall" {
   eth2_subnet_id = module.vpc.private_subnet_ids[0]
   eth2_sg_id     = module.vpc.internal_sg_id
   eth2_ip        = "10.0.1.10"
+
+  iam_instance_profile = module.fw_bootstrap.instance_profile_name
+  bootstrap_bucket     = module.fw_bootstrap.bucket_id
 
   tags = {
     Name        = "firewall"
