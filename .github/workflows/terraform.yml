@@ -32,12 +32,3 @@ jobs:
           tf_actions_working_dir: './aws'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'Terraform Plan'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: './aws'
-          args: '-var "aws_secret_key=${{ secrets.aws_secret_key }}" -var "aws_access_key=${{ secrets.aws_access_key }}"'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
