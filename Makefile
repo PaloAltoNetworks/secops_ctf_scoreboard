@@ -24,6 +24,7 @@ help:
 clean: ## Cleanup all the things
 	find . -name '*.pyc' | xargs rm -rf
 	find . -name '__pycache__' | xargs rm -rf
+	rm -rf packer*
 	rm -rf myvenv
 
 docker: ## do the docker stuff

@@ -19,9 +19,6 @@ resource "aws_instance" "franklin-iac" {
 
   connection {
     user    = "ubuntu"
-  //  timeout = "1m"
-  //  #agent       = false
-  //  private_key = "${file("~/.ssh/id_rsa")}"
   }
 }
 
