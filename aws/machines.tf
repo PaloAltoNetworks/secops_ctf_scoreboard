@@ -17,8 +17,5 @@ resource "aws_instance" "franklin-iac" {
     Name = "ubuntu-ctf-scoreboard"
   }
 
-  connection {
-    user    = "ubuntu"
-  }
 }
 
