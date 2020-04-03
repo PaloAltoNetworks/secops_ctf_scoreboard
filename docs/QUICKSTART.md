@@ -36,10 +36,17 @@ No errors. All clean and green.
   - Region: US West Oregon
   - Verify the Ami Id: ami-09caf56db45f96bca
 
+## Key Management
+
+- Add the public half of your SSH key to your AWS account.
+  - Name it "scoreboard" to match the name Terraform is expecting.
+
 ## Initialize Terraform
 
-- You should use v12 (not v11)
-- Now do `cd aws` and type `terraform init` to get started.
+- The `config.sh` script should have helpd you complete Terraform install by this point.
+  - You should use version 0.12.x (not v11)
+  - v0.12.x is not compatible with prisma scanners at this time.
+- Do `cd aws` and then `terraform init` to get started.
 - You should see a message as below
 
 ```
@@ -50,3 +57,7 @@ any changes that are required for your infrastructure. All Terraform commands
 should now work.
 ```
 
+- Finally, you can run `terraform apply`.
+- You will see two IP addresses for the firewall after completion.
+- In your browser, navigate to https://x.x.x.x/, where x.x.x.x is the IPv4 value of "firewall_mgmt_public_ip".
+- You can log in with the credentials specified in the bootstrap.xml file.
