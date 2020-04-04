@@ -1,0 +1,9 @@
+version: '3'
+services:
+  scoreboard:
+    hostname: ctf_scoreboard
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/tmp/project
