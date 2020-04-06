@@ -4,9 +4,9 @@ resource "aws_security_group" "allow_tls" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description = "SSH Inbound"
-    from_port   = 22
-    to_port     = 22
+    description = "TLS from VPC"
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = [var.vpc_cidr]
   }
