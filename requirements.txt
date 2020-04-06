@@ -1,0 +1,7 @@
+ansible
+molecule
+docker
+pyyaml
+pytest
+pandoc
+testinfra
