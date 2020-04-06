@@ -3,24 +3,21 @@
 #
 #          FILE: ctfd.sh
 # 
-#         USAGE: ./ctfd.sh 
+#         USAGE: bash ctfd.sh 
 # 
 #   DESCRIPTION: 
 # 
-#       OPTIONS: ---
-#  REQUIREMENTS: ---
-#          BUGS: ---
-#         NOTES: ---
-#        AUTHOR: YOUR NAME (), 
+#        AUTHOR: Franklin Diaz (fdiaz@paloaltonetworks.com), 
 #  ORGANIZATION: 
 #       CREATED: 03/31/2020 16:42
-#      REVISION:  ---
+#      REVISION:  0.1
 #===============================================================================
 
 git clone https://github.com/CTFd/CTFd.git
-bash CTFd/prepare.sh
-bash CTFd/scripts/install_docker.sh
+# Setuptools v45.0.0 breaks virtualenv on Python 2
+# https://github.com/pypa/virtualenv/issues/1493
+sudo pip install --upgrade 'setuptools<45.0.0'
+cd CTFd && sudo bash prepare.sh
+sudo bash scripts/install_docker.sh
 newgrp docker
-docker run -p 8000:8000 -it ctfd/ctfd
-
-
+screen -d -m docker run -p 8000:8000 -it ctfd/ctfd
