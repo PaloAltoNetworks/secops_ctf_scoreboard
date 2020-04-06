@@ -10,7 +10,7 @@ resource "aws_security_group" "allow_tls" {
     protocol    = "tcp"
     cidr_blocks = [var.vpc_cidr]
   }
-  
+
   ingress {
     description = "Scoreboard App"
     from_port   = 8000
