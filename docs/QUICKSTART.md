@@ -1,5 +1,27 @@
 # QUICKSTART
 
+Do these steps to get your local machine ready. 
+
+## Prepare your local environment.
+
+- [Generate AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+- Place your AWS credentials in ~/.aws/credentials
+  - For example:
+
+```
+[default]
+aws_access_key_id=AXIAYZDDL9ZF3GPCGMEG
+aws_secret_access_key=brFz5pGbHN6ei6UHy0y0dXg0hWD0TVzFiMMbtPe
+```
+
+- Create a file called /aws/terraform.tfvars
+  - For example:
+
+```
+aws_access_key="AXIAYZDDL9ZF3GPCGMEG"
+aws_secret_key="brFz5pGbHN6ei6UHy0y0dXg0hWD0TVzFiMMbtPe"
+```
+
 - Run the "config" script in this repo. 
 - Correct the errors until you get output as below.
 
@@ -26,7 +48,7 @@ Found tfvars file in /Users/fdiaz/workspace/ctf_scoreboard/terraform/aws/terrafo
 No errors. All clean and green.
 ```
 
-## Subscribe to Firewall AMi
+## Subscribe to Firewall AMI
 
 - [Navigate to this link](https://aws.amazon.com/marketplace/pp?sku=6njl1pau431dv1qxipg63mvah)
 - Accept the terms
@@ -38,7 +60,9 @@ No errors. All clean and green.
 
 ## Key Management
 
-- Add the public half of your SSH key to your AWS account.
+- Use existing or [create an SSH key pair](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ssh-key-pair-regions/)
+  - Do not share the private half of your key, ever.
+- [Add the public half of your SSH key to your AWS account](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws).
   - Name it "scoreboard" to match the name Terraform is expecting.
 
 ## Initialize Terraform
@@ -61,3 +85,7 @@ should now work.
 - You will see two IP addresses for the firewall after completion.
 - In your browser, navigate to https://x.x.x.x/, where x.x.x.x is the IPv4 value of "firewall_mgmt_public_ip".
 - You can log in with the credentials specified in the bootstrap.xml file.
+
+## Teardown
+
+- use the command `terraform destroy` to tear everything down.
