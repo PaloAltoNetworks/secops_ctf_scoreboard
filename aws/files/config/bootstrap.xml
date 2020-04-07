@@ -9,7 +9,7 @@
             <superuser>yes</superuser>
           </role-based>
         </permissions>
-        <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDVURmN0pjVVhidUpDQTJwcnVSOWQ5M3BHSTR3YkgwMmxnVi9NdjhmTnZya1hjcDh2NHVneWkvZ0RoM1FCNnVhdE9veWJSWE01NXdnZ1VIY2l5Rm0xZytoMXFEeWhSMDU3SkkwNVBMb0FqY1o3NnA0bnNjV3NsUWZmRUVobFFIQ3dRazRyYzVjNXRvUkpCUmZvYldrenR2d2cxNDRCWmQyOFhlR3RKZkJIakNsVjVCUUIwUStJeC9qSUVza0crU1R1YjJKZkJFUkRnVE9UY2RFRnEvT1RRQWJWV29PV0xhZGd0MUZzbUlYbkRlZzFXR0xZV0p2OTh3Sk5BMzJxcVZ1K3V0UGJ1RnhHYi9zdzlmR2k1Y3ArNGRrdVZQMDVSZElGRTIvY1VqdkhzdVo2dUdBNk9SVDh1a1p0WFV5Y1plTXNkNnVyU2l3elpRR1hobjNTa05RN0IgbWlyaWNoYXJkc29uLWltYWMtYXdz</public-key>
+        <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFDdSs1dktqVHRUV1p3bERsbTdBbG1RZFdLdWpIcTdjV25vZUpaYS9zVUdOaityZzhkK1NmSlpDRitjU3VPRUZ4cUo2d1ZiWDVXU0F2QjBNTkVUdG5jVnNDNk52S05TR0ZzYzh2SXJJYXM1Y1F0eWs4ZnJwNlNBOWFKL005MHAyZWtZd1BWaHFzaEdDTGlSWjFlbmJtKzh1dnBHWmtXVy9nN2VRVjhIYnhGbkZDc2RmOUpaekhjblhXT0Q4dGtSTzlyL3V1SVgzMUJtVnhFRzJZRThJUEMzWHExOGhHZ2xMc2kwdk9HZEJpY2ZPR0djL0RSc3c2d3hYU2pYRjY2bkpBeG1LWmdnNGxXek5JZThNa0VKdGhJOWNXUHNUV2NKQzNYUHBSdUtRWTZjcm9mWmErYXR3a3ltaFlKL01VSUpXNDE3MmNXTHBiQTErNGR2U0ZLU1VweW8vUXMrMFpwZnQ4dlZ2Y2VhRGhPc05DcHpLay9xSU5aM1orUS9CNEk5UmlidzgzSzNGd2ZBbHI2dDM1WjRqN2NDdzNWcmxKdHlWSHJ3VW5Wd2tDTnV3MnpjV0lTZlhTbkNDRnlWZ3hpSmx0bnFrNkNCT1VmazZQM3FJWHF2UXFRcXAzY0IxU2lpbVZ0U041YnpJVGlObkFkeVNuT1VZSklzbU14a1BIMFF1YThjT1FOTnMyTnM5ekFqZ2lsVFp0ekcwc2lKdFdtSEpyZzgrM2pNRzVtd3pPdklnVDNEYWRBeDVhbzEvKzhhazRnQmZvcVNyTFNKWFB3VzhNeWwvSTMvdXhWa2J4YjQrampKd254S3NiR1M1TG5mVkdTdnFFRlhndEdZZk56NzllbWRJV2YzVGJoNkx2OSszUnJ0OW1hQ1BnMy9pNVF0V0JwYWZsSTJSeHVyYlE9PSBzY29yZWJvYXJk</public-key>
       </entry>
     </users>
     <password-complexity>
@@ -73,6 +73,13 @@
         <scheduled>yes</scheduled>
       </report>
     </botnet>
+    <content-preview>
+      <application/>
+      <application-type>
+        <category/>
+        <technology/>
+      </application-type>
+    </content-preview>
   </shared>
   <devices>
     <entry name="localhost.localdomain">
@@ -293,9 +300,9 @@
           <type>
             <dhcp-client>
               <send-hostname>yes</send-hostname>
-              <send-client-id>no</send-client-id>
-              <accept-dhcp-hostname>no</accept-dhcp-hostname>
-              <accept-dhcp-domain>no</accept-dhcp-domain>
+              <send-client-id>yes</send-client-id>
+              <accept-dhcp-hostname>yes</accept-dhcp-hostname>
+              <accept-dhcp-domain>yes</accept-dhcp-domain>
             </dhcp-client>
           </type>
           <update-server>updates.paloaltonetworks.com</update-server>
@@ -315,7 +322,13 @@
             <disable-telnet>yes</disable-telnet>
             <disable-http>yes</disable-http>
           </service>
-          <hostname>PA-VM</hostname>
+          <hostname>ctf-firewall</hostname>
+          <dns-setting>
+            <servers>
+              <primary>8.8.4.4</primary>
+              <secondary>8.8.8.8</secondary>
+            </servers>
+          </dns-setting>
         </system>
         <setting>
           <config>
@@ -324,15 +337,16 @@
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
             <initcfg>
+              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFDdSs1dktqVHRUV1p3bERsbTdBbG1RZFdLdWpIcTdjV25vZUpaYS9zVUdOaityZzhkK1NmSlpDRitjU3VPRUZ4cUo2d1ZiWDVXU0F2QjBNTkVUdG5jVnNDNk52S05TR0ZzYzh2SXJJYXM1Y1F0eWs4ZnJwNlNBOWFKL005MHAyZWtZd1BWaHFzaEdDTGlSWjFlbmJtKzh1dnBHWmtXVy9nN2VRVjhIYnhGbkZDc2RmOUpaekhjblhXT0Q4dGtSTzlyL3V1SVgzMUJtVnhFRzJZRThJUEMzWHExOGhHZ2xMc2kwdk9HZEJpY2ZPR0djL0RSc3c2d3hYU2pYRjY2bkpBeG1LWmdnNGxXek5JZThNa0VKdGhJOWNXUHNUV2NKQzNYUHBSdUtRWTZjcm9mWmErYXR3a3ltaFlKL01VSUpXNDE3MmNXTHBiQTErNGR2U0ZLU1VweW8vUXMrMFpwZnQ4dlZ2Y2VhRGhPc05DcHpLay9xSU5aM1orUS9CNEk5UmlidzgzSzNGd2ZBbHI2dDM1WjRqN2NDdzNWcmxKdHlWSHJ3VW5Wd2tDTnV3MnpjV0lTZlhTbkNDRnlWZ3hpSmx0bnFrNkNCT1VmazZQM3FJWHF2UXFRcXAzY0IxU2lpbVZ0U041YnpJVGlObkFkeVNuT1VZSklzbU14a1BIMFF1YThjT1FOTnMyTnM5ekFqZ2lsVFp0ekcwc2lKdFdtSEpyZzgrM2pNRzVtd3pPdklnVDNEYWRBeDVhbzEvKzhhazRnQmZvcVNyTFNKWFB3VzhNeWwvSTMvdXhWa2J4YjQrampKd254S3NiR1M1TG5mVkdTdnFFRlhndEdZZk56NzllbWRJV2YzVGJoNkx2OSszUnJ0OW1hQ1BnMy9pNVF0V0JwYWZsSTJSeHVyYlE9PSBzY29yZWJvYXJk</public-key>
               <type>
                 <dhcp-client>
                   <send-hostname>yes</send-hostname>
-                  <send-client-id>no</send-client-id>
-                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
-                  <accept-dhcp-domain>no</accept-dhcp-domain>
+                  <send-client-id>yes</send-client-id>
+                  <accept-dhcp-hostname>yes</accept-dhcp-hostname>
+                  <accept-dhcp-domain>yes</accept-dhcp-domain>
                 </dhcp-client>
               </type>
-              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDVURmN0pjVVhidUpDQTJwcnVSOWQ5M3BHSTR3YkgwMmxnVi9NdjhmTnZya1hjcDh2NHVneWkvZ0RoM1FCNnVhdE9veWJSWE01NXdnZ1VIY2l5Rm0xZytoMXFEeWhSMDU3SkkwNVBMb0FqY1o3NnA0bnNjV3NsUWZmRUVobFFIQ3dRazRyYzVjNXRvUkpCUmZvYldrenR2d2cxNDRCWmQyOFhlR3RKZkJIakNsVjVCUUIwUStJeC9qSUVza0crU1R1YjJKZkJFUkRnVE9UY2RFRnEvT1RRQWJWV29PV0xhZGd0MUZzbUlYbkRlZzFXR0xZV0p2OTh3Sk5BMzJxcVZ1K3V0UGJ1RnhHYi9zdzlmR2k1Y3ArNGRrdVZQMDVSZElGRTIvY1VqdkhzdVo2dUdBNk9SVDh1a1p0WFV5Y1plTXNkNnVyU2l3elpRR1hobjNTa05RN0IgbWlyaWNoYXJkc29uLWltYWMtYXdz</public-key>
+              <hostname>ctf-firewall</hostname>
             </initcfg>
           </management>
         </setting>
@@ -367,6 +381,17 @@
                   </override>
                 </tcp>
               </protocol>
+            </entry>
+            <entry name="scoreboard UI">
+              <protocol>
+                <tcp>
+                  <port>8000</port>
+                  <override>
+                    <no/>
+                  </override>
+                </tcp>
+              </protocol>
+              <description>port 8000</description>
             </entry>
           </service>
           <service-group/>
@@ -443,6 +468,37 @@
                   </hip-profiles>
                   <action>allow</action>
                 </entry>
+                <entry name="Allow Scoreboard" uuid="48d6db71-1f6b-4a5c-996e-fa8ce2aa3abf">
+                  <to>
+                    <member>any</member>
+                  </to>
+                  <from>
+                    <member>untrust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>10.0.0.10</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>http-video</member>
+                    <member>web-browsing</member>
+                  </application>
+                  <service>
+                    <member>scoreboard UI</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
               </rules>
             </security>
             <nat>
@@ -493,6 +549,33 @@
                     <member>any</member>
                   </destination>
                   <service>any</service>
+                </entry>
+                <entry name="Scoreboard UI" uuid="1ba80f2a-199f-44cc-893f-58bbb1f6052c">
+                  <to>
+                    <member>untrust</member>
+                  </to>
+                  <from>
+                    <member>untrust</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>10.0.0.10</member>
+                  </destination>
+                  <service>scoreboard UI</service>
+                  <description>Allow player to see the scoreboard</description>
+                  <to-interface>any</to-interface>
+                  <source-translation>
+                    <dynamic-ip-and-port>
+                      <interface-address>
+                        <interface>ethernet1/2</interface>
+                      </interface-address>
+                    </dynamic-ip-and-port>
+                  </source-translation>
+                  <destination-translation>
+                    <translated-address>10.0.1.21</translated-address>
+                  </destination-translation>
                 </entry>
               </rules>
             </nat>
