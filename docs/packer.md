@@ -1,12 +1,16 @@
 # Packer
 
-## Validate
+## Validate AMI Configuration
 
-Run the command `packer validate scoreboard.json`
+- Update the file /scoreboard.json as needed.
+- Update the ansible files in /playbooks as needed.
+- Run the command `packer validate scoreboard.json`
 
-## Build
+## Build AMI
 
 - Run `packer build scoreboard.json` to build
+- Note the AMI ID at the end of the output when packer build completes successfully.
+- Update the "default value of the variable "fw_ami" in the file /aws/variables.tf
 
 ## Remove
 
