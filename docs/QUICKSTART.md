@@ -1,7 +1,5 @@
 # QUICKSTART
 
-![architecture](https://github.com/wwce/ctf_scoreboard/blob/master/docs/secops_ctf_scoreboard_topology.jpg)
-
 - Run the "config" script in this repo. 
 - Correct the errors until you get output as below.
 
