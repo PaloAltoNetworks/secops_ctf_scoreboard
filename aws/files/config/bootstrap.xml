@@ -73,6 +73,13 @@
         <scheduled>yes</scheduled>
       </report>
     </botnet>
+    <content-preview>
+      <application/>
+      <application-type>
+        <category/>
+        <technology/>
+      </application-type>
+    </content-preview>
   </shared>
   <devices>
     <entry name="localhost.localdomain">
@@ -316,6 +323,12 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>ctf-firewall</hostname>
+          <dns-setting>
+            <servers>
+              <primary>8.8.4.4</primary>
+              <secondary>8.8.8.8</secondary>
+            </servers>
+          </dns-setting>
         </system>
         <setting>
           <config>
@@ -475,7 +488,8 @@
                     <member>any</member>
                   </category>
                   <application>
-                    <member>any</member>
+                    <member>http-video</member>
+                    <member>web-browsing</member>
                   </application>
                   <service>
                     <member>scoreboard UI</member>
