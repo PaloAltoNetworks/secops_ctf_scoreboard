@@ -29,5 +29,6 @@ override.tf.json
 # example: *tfplan*
 
 playbooks/*.retry
-
+aws/*.out
 packer*
+docs/_build
