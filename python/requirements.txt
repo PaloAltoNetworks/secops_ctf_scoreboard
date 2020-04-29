@@ -5,3 +5,4 @@ pyyaml
 pytest
 pandoc
 testinfra
+sphinx_rtd_theme
