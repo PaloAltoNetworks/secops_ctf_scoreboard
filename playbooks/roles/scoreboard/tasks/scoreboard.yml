@@ -1,11 +1,30 @@
 ---
-- name: "Create home directory for scoreboard cloning"
-  file:
-    path: "{{ home_directory }}"
-    state: directory
-    mode: 0755
-    recurse: true
+#- git:
+#  repo: 'https://github.com/CTFd/CTFd.git'
+#  dest: "{{ home_directory }}"
 
-- git:
-    repo: 'https://github.com/CTFd/CTFd.git'
-    dest: "{{ home_directory }}"
+- template:
+    src: ctfd_setup.sh
+    dest: "{{ home_directory }}/ctfd.sh"
+    owner: "{{ secdevops_user }}"
+    group: "{{ secdevops_user }}"
+    mode: 0755
+
+- name: Execute ctfd_setup.sh
+  command: "{{ home_directory }}/ctfd_setup.sh"
+  changed_when: true
+
+- template:
+    src: ctfd_run.sh
+    dest: "{{ home_directory }}/ctfd_run.sh"
+    owner: "{{ secdevops_user }}"
+    group: "{{ secdevops_user }}"
+    mode: 0755
+
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: ctfd runner
+    minute: "0,5,10,15,20,25,30,35,40,45,50,55"
+    user: ubuntu
+    job: "bash /home/ubuntu/ctfd_run.sh"
+    cron_file: ctfd_runner

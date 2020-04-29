@@ -1,0 +1,6 @@
+rstcheck
+molecule
+docker
+pyyaml
+pytest
+testinfra

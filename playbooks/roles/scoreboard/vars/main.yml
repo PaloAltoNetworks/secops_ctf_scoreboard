@@ -1,5 +1,6 @@
 ---
-home_directory: "/tmp/project"
+secdevops_user: "ubuntu"
+home_directory: "/home/ubuntu"
 create_containers: 4
 default_container_name: docker
 default_container_image: ubuntu

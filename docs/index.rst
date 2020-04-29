@@ -32,6 +32,6 @@ SecOps CTF Scoreboard documentation
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: introduction
+   :caption: development
    
    development/packer.rst

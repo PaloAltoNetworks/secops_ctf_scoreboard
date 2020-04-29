@@ -1,7 +1,7 @@
 ---
-#- name: Install Docker
-#  import_tasks: docker.yml
-#  tags: install_docker
+- name: Setup user
+  import_tasks: user.yml
+  tags: setup_user
 
 - name: Setup Scoreboard
   import_tasks: scoreboard.yml

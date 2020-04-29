@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  become: true
+  become_method: sudo
   tasks:
     - name: Set up Scoreboard
       import_role:
