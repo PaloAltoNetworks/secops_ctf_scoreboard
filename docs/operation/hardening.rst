@@ -2,6 +2,9 @@
 Hardening
 =========
 
+Once the firewall is licensed, you can take additional steps to
+harden the environment.
+
 Firewall
 --------
 

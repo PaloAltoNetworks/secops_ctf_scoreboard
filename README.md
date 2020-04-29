@@ -6,4 +6,4 @@
 - Palo Alto Networks Consulting Engineering, SecOps team
 - Infra as Code version of CTFd scoreboard on Amazon AWS.
 
-![architecture](https://github.com/wwce/ctf_scoreboard/blob/master/docs/secops_ctf_scoreboard_topology.jpg)<br>*Capture the Flag!*
+![architecture](https://github.com/wwce/ctf_scoreboard/blob/master/docs/images/secops_ctf_scoreboard_topology.jpg)<br>*Capture the Flag!*
