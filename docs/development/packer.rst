@@ -13,6 +13,15 @@ Validate AMI Configuration
 
 - Update the file `/scoreboard.json` as needed.
 - Update the ansible files in the /playbooks directory as needed.
+- Set debug in scoreboard.json to debug ansible playbooks.
+::
+
+  "provisioners": [{
+    "type": "ansible",
+    "playbook_file": "./playbooks/scoreboard.yml",
+    "extra_arguments": ["-vvvv"]
+  }]
+
 - Run the command `packer validate scoreboard.json`
 
 Build AMI

@@ -1,11 +1,13 @@
 ---
-#- git:
-#  repo: 'https://github.com/CTFd/CTFd.git'
-#  dest: "{{ home_directory }}"
+- name: Clone the CTFd repo 
+  git:
+    repo: 'https://github.com/CTFd/CTFd.git'
+    dest: "{{ home_directory }}/CTFd"
 
-- template:
+- name: "Install ctfd_setup script"
+  template:
     src: ctfd_setup.sh
-    dest: "{{ home_directory }}/ctfd.sh"
+    dest: "{{ home_directory }}/ctfd_setup.sh"
     owner: "{{ secdevops_user }}"
     group: "{{ secdevops_user }}"
     mode: 0755
@@ -14,7 +16,8 @@
   command: "{{ home_directory }}/ctfd_setup.sh"
   changed_when: true
 
-- template:
+- name: "Install ctd_run script"
+  template:
     src: ctfd_run.sh
     dest: "{{ home_directory }}/ctfd_run.sh"
     owner: "{{ secdevops_user }}"
