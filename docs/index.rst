@@ -27,3 +27,11 @@ SecOps CTF Scoreboard documentation
 
    operation/mac_quickstart
    operation/licensing
+   operation/hardening
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: introduction
+   
+   development/packer.rst

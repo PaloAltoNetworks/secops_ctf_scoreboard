@@ -111,6 +111,6 @@ Login
 Teardown
 --------
 
-  If you don;t tear down the environment, your credit card on
+  If you don't tear down the environment, your credit card on
   file will be billed. Use the command `terraform destroy` to 
   tear everything completely down.
