@@ -7,10 +7,11 @@ Mac Quickstart
 
 Prepare your local environment.
   `Generate AWS credentials`_.
-  .. `Generate AWS credentials`: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
 
-  Now place your AWS credentials in ~/.aws/credentials. 
-  For example:
+.. _`Generate AWS credentials`: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+
+Now place your AWS credentials in ~/.aws/credentials. 
+For example:
 
 .. code-block:: bash
 
@@ -19,15 +20,15 @@ Prepare your local environment.
   aws_secret_access_key=brFz5pGbHN6ei6UHy0y0dXg0hWD0TVzFiMMbtPe
 
 
-  Create a file called /aws/terraform.tfvars.  For example:
+Create a file called /aws/terraform.tfvars.  For example:
 
 .. code-block:: bash
 
   aws_access_key="AXIAYZDDL9ZF3GPCGMEG"
   aws_secret_key="brFz5pGbHN6ei6UHy0y0dXg0hWD0TVzFiMMbtPe"
 
-  Run the "config" script in this repo. Correct the errors until 
-  you get output as below.
+Run the "config" script in this repo. Correct the errors until 
+you get output as below.
 
 .. code-block:: bash
 
