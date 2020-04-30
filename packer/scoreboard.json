@@ -40,7 +40,7 @@
         "cd /home/ubuntu && git clone https://github.com/wwce/ctf_scoreboard.git",
         "cp /home/ubuntu/ctf_scoreboard/packer/authorized_keys /home/ubuntu/.ssh",
         "chown -R ubuntu /home/ubuntu",
-        "echo \"*/15 * * * * bash /home/ubuntu/ctf_scoreboard/packer/ctf_setup.sh\" | crontab -"
+        "cp /home/ubuntu/ctf_scoreboard/packer/ctfd.service /etc/systemd/system"
     ]}
   ]
 }

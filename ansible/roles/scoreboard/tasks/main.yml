@@ -1,8 +1,0 @@
----
-- name: "Setup {{ secdevops_user }} user"
-  import_tasks: user.yml
-  tags: setup_user
-
-- name: Setup Scoreboard
-  import_tasks: scoreboard.yml
-  tags: install_python
