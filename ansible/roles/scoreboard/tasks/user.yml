@@ -1,0 +1,55 @@
+---
+- name: Disable Password Authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication no"
+    state: present
+    backup: true
+
+- name: Disable Root Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"
+    state: present
+    backup: true
+
+- name: "Ensure group {{ secdevops_user  }} exists"
+  group:
+    name: "{{ secdevops_user }}"
+    state: present
+
+- name: "Ensure group docker exists"
+  group:
+    name: "docker"
+    state: present
+
+- name: "Add {{ secdevops_user }} user"
+  user:
+    name: "{{ secdevops_user }}"
+    shell: /bin/bash
+    group: "{{ secdevops_user }}"
+
+- name: "Add {{ secdevops_user }} user to the sudoers"
+  copy:
+    dest: "/etc/sudoers.d/devops"
+    content: "{{ secdevops_user }} ALL=(ALL)  NOPASSWD: ALL"
+
+- name: "Add {{ secdevops_user }} user mod"
+  command: "usermod -aG docker {{ secdevops_user }}"
+  become: true
+
+- name: "Create .ssh directory for {{ secdevops_user }}"
+  file:
+      path: "{{ home_directory }}/.ssh"
+      state: directory
+      owner: "{{ secdevops_user }}"
+      group: "{{ secdevops_user }}"
+      mode: 0700
+
+- name: Install authorized_keys
+  template:
+      src: authorized_keys
+      dest: "{{ home_directory }}/.ssh/authorized_keys"
+      mode: 0644

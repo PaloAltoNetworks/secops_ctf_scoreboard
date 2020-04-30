@@ -1,0 +1,33 @@
+---
+- name: Clone the CTFd repo 
+  git:
+    repo: 'https://github.com/CTFd/CTFd.git'
+    dest: "{{ home_directory }}/CTFd"
+
+- name: "Install ctfd_setup script"
+  template:
+    src: ctfd_setup.sh
+    dest: "{{ home_directory }}/ctfd_setup.sh"
+    owner: "{{ secdevops_user }}"
+    group: "{{ secdevops_user }}"
+    mode: 0755
+
+- name: Execute ctfd_setup.sh
+  command: "{{ home_directory }}/ctfd_setup.sh"
+  changed_when: true
+
+- name: "Install ctd_run script"
+  template:
+    src: ctfd_run.sh
+    dest: "{{ home_directory }}/ctfd_run.sh"
+    owner: "{{ secdevops_user }}"
+    group: "{{ secdevops_user }}"
+    mode: 0755
+
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: ctfd runner
+    minute: "0,5,10,15,20,25,30,35,40,45,50,55"
+    user: ubuntu
+    job: "bash /home/ubuntu/ctfd_run.sh"
+    cron_file: ctfd_runner
