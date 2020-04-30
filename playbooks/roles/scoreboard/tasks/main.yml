@@ -1,5 +1,5 @@
 ---
-- name: Setup user
+- name: "Setup {{ secdevops_user }} user"
   import_tasks: user.yml
   tags: setup_user
 

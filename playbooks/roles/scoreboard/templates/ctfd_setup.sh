@@ -8,8 +8,8 @@
 #       CREATED: 03/31/2020 16:42
 #      REVISION:  0.1
 #============================================================
-if ! -d "{{ home_directory }}/CTFd"; then
-  cd {{ home_directory }}/CTFd && git clone https://github.com/CTFd/CTFd.git
+if [ ! -d "{{ home_directory }}/CTFd" ]; then
+  cd {{ home_directory }} && git clone https://github.com/CTFd/CTFd.git
 fi
 # Setuptools v45.0.0 breaks virtualenv on Python 2
 # https://github.com/pypa/virtualenv/issues/1493

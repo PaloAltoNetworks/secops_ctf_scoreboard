@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: true
   tasks:
     - name: Set up Scoreboard
       import_role:

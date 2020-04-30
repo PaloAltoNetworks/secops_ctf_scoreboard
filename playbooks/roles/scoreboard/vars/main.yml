@@ -1,7 +1,5 @@
 ---
 secdevops_user: "ubuntu"
-home_directory: "/home/ubuntu"
-create_containers: 4
-default_container_name: docker
-default_container_image: ubuntu
-default_container_command: sleep 1d
+home_directory: "/home/{{secdevops_user}}"
+#ssh_pub_key_file: "/home/{{ secdevops_user }}/.ssh/id_rsa.pub"
+#ssh_pub_key: "{{ lookup('file', ssh_pub_key_file) }}"
