@@ -39,8 +39,8 @@
         "chmod 700 /home/ubuntu/.ssh",
         "cd /home/ubuntu && git clone https://github.com/wwce/ctf_scoreboard.git",
         "cp /home/ubuntu/ctf_scoreboard/packer/authorized_keys /home/ubuntu/.ssh",
-        "chown -R ubuntu /home/ubuntu/.ssh",
-        "bash /home/ubuntu/ctf_scoreboard/packer/ctfd_setup.sh"
+        "chown -R ubuntu /home/ubuntu",
+        "cp /home/ubuntu/ctf_scoreboard/packer/ctfd.service /etc/systemd/system"
     ]}
   ]
 }
