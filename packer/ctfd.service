@@ -1,7 +1,5 @@
 [Unit]
 Description=CTFD service
-Requires=docker.service
-After=docker.service
 [Service]
 Type=simple
 Restart=always
