@@ -100,7 +100,7 @@ module "scoreboard" {
   sg_id      = module.vpc.internal_sg_id
 
   instance_type = "t2.micro"
-  ami = "${data.aws_ami.ctf_scoreboard_ami.id}"
+  ami           = "${data.aws_ami.ctf_scoreboard_ami.id}"
 
   tags = {
     Name        = "scoreboard"

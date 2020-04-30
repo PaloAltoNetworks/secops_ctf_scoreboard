@@ -24,7 +24,7 @@ help:
 clean: ## Cleanup all the things
 	find . -name '*.pyc' | xargs rm -rf
 	find . -name '__pycache__' | xargs rm -rf
-	rm -rf packer*
+	rm -rf packer/packer*
 	rm -rf myvenv
 
 docker: ## do the docker stuff
@@ -41,8 +41,8 @@ docs: python ## Generate documentation
 packer: python ## Build and amazon AMI for the scoreboard
 	@if [ ! -f /.dockerenv ]; then echo "Run make packer inside docker container" && exit 1; fi
 	$(MAKE) print-status MSG="Validate Packer Configuration..."
-	if [ ! -f /tmp/project/packer ]; then wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip && unzip /tmp/project/packer_1.5.5_linux_amd64.zip; fi
-	/tmp/project/packer validate scoreboard.json
+	if [ ! -f /tmp/project/packer/pacler ]; then cd /tmp/project/packer && wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip && unzip /tmp/project/packer/packer_1.5.5_linux_amd64.zip; fi
+	/tmp/project/packer/packer validate /tmp/project/packer/scoreboard.json
 	#$(MAKE) print-status MSG="Build AMI with Packer..."
 	#/tmp/project/packer build scoreboard.json
 

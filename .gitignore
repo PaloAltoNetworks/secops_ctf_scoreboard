@@ -29,7 +29,6 @@ override.tf.json
 # example: *tfplan*
 
 .vscode
-playbooks/*.retry
 aws/*.out
-packer*
+packer/packer*
 docs/_build

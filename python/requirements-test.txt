@@ -1,5 +1,4 @@
 rstcheck
-molecule
 docker
 pyyaml
 pytest

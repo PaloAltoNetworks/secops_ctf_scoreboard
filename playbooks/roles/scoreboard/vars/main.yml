@@ -1,5 +1,0 @@
----
-secdevops_user: "ubuntu"
-home_directory: "/home/{{secdevops_user}}"
-#ssh_pub_key_file: "/home/{{ secdevops_user }}/.ssh/id_rsa.pub"
-#ssh_pub_key: "{{ lookup('file', ssh_pub_key_file) }}"
