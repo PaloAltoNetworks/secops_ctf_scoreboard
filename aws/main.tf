@@ -2,6 +2,22 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_ami" "ctf_scoreboard_ami" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["secops-ctf-scoreboard*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["603651300939"]
+}
+
 module "vpc" {
   source = "github.com/mrichardson03/terraform-aws-vpc?ref=v0.0.3"
 
@@ -84,7 +100,7 @@ module "scoreboard" {
   sg_id      = module.vpc.internal_sg_id
 
   instance_type = "t2.micro"
-  ami           = var.ami
+  ami           = "${data.aws_ami.ctf_scoreboard_ami.id}"
 
   tags = {
     Name        = "scoreboard"

@@ -1,0 +1,5 @@
+rstcheck
+docker
+pyyaml
+pytest
+testinfra

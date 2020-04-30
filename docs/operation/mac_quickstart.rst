@@ -3,7 +3,8 @@ MAC QUICKSTART
 ==============
 
 Mac Quickstart
-  Do these steps to get your local machine ready. 
+  Do these steps to get your local machine ready. Be sure to
+  enable MFA on your Amazon AWS account.
 
 Prepare your local environment.
   `Generate AWS credentials`_.

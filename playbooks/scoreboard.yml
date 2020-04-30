@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  tasks:
-    - name: Set up Scoreboard
-      import_role:
-        name: scoreboard

@@ -18,14 +18,14 @@
             python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
         - name: Install Python Goodies
-          run: python -m pip install ansible && python -m pip list -v | grep ansible
+          run: python -m pip install -rpython/requirements.txt
 
         # fix backwards incompatibilities in template
         - name: Fix Template
           uses: operatehappy/packer-github-actions@master
           with:
             command: fix
-            target: scoreboard.json
+            target: packer/scoreboard.json
   
         # validate templates
         - name: Validate Template
@@ -33,14 +33,14 @@
           with:
             command: validate
             arguments: -syntax-only
-            target: scoreboard.json
+            target: packer/scoreboard.json
   
         # build artifact
         #- name: Build Artifact
         #  uses: operatehappy/packer-github-actions@master
         #  with:
         #    command: build
-        #    target: scoreboard.json
+        #    target: packer/scoreboard.json
         #    arguments: "-color=false -on-error=abort"
   
         # additional steps to process artifacts

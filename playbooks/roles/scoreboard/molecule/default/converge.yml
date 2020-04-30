@@ -1,8 +1,0 @@
----
-- name: Converge
-  hosts: all
-  become: true
-  tasks:
-    - name: Set up Scoreboard
-      import_role:
-        name: scoreboard

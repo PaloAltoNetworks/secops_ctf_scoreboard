@@ -2,11 +2,26 @@
 Packer
 ======
 
+Be sure to complete the quickstart steps before you proceed.
+This will prepare your environment to work with packer. To 
+set up packer in the docker container you can type `make packer`
+but you will need to set up your aws creds in the container 
+manually.
+
 Validate AMI Configuration
 --------------------------
 
-- Update the file /scoreboard.json as needed.
-- Update the ansible files in /playbooks as needed.
+- Update the file `/scoreboard.json` as needed.
+- Update the ansible files in the /playbooks directory as needed.
+- Set debug in scoreboard.json to debug ansible playbooks.
+::
+
+  "provisioners": [{
+    "type": "ansible",
+    "playbook_file": "./playbooks/scoreboard.yml",
+    "extra_arguments": ["-vvvv"]
+  }]
+
 - Run the command `packer validate scoreboard.json`
 
 Build AMI
@@ -20,7 +35,6 @@ Remove Stale AMI
 ----------------
 
 - Avoid charges to AWS account
-
 - Remove the AMI by first `deregistering it on the AWS AMI management page`_. 
 - Next, delete the associated snapshot on the AWS snapshot management page.
 
