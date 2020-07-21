@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scoreboard-service
+  labels:
+    app: secops-ctf-scoreboard
+    role: service
+    tier: backend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+  selector:
+    name: secops-ctf-scoreboard
+    environment: dev
