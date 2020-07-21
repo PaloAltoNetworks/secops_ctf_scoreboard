@@ -9,6 +9,6 @@ python:
 before_install:
   - sudo apt-get -qq update
   - python3 -m pip install wheel
-  - python3 -m pip install -rrequirements.txt
+  - python3 -m pip install -rpython/requirements.txt
 script: 
   - cd playbooks/roles/webserver && molecule test
