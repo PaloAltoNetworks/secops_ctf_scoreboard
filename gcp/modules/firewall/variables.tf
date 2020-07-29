@@ -1,39 +1,19 @@
-variable "image" {
-  description = "Name of the docker image to deploy."
-  default     = "gcr.io/project_name/service_name"
-}
-
-variable "digest" {
-  description = "The docker image digest to deploy."
-  default     = "latest"
-}
-
-variable "project_name" {
-  description = "Google Project ID."
+variable "project_id" {
+  description = "The project ID to host the network in"
   type        = string
-  default = "ctf-sko21"
-}
-
-variable "region" {
-  description = "Google Cloud region"
-  type        = string
-  default     = "us-central1"
-}
-
-variable "zone" {
-  description = "The GCP zone in which to deploy"
-  type        = string
-  default     = "us-central1-a"
 }
 
 variable "network_01_name" {
   description = "The name of the first VPC network being created"
+}
+
+variable "gcp_region_1" {
+  description = "The name of the Region"
   type        = string
-  default     = "secops-ctf-scoreboard"
 }
 
 /**
- *  Copyright 2020 Palo Alto Networks.
+ *  Copyright 2019 Palo Alto Networks.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,3 +27,4 @@ variable "network_01_name" {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
