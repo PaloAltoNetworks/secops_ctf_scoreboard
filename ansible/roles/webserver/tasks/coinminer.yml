@@ -1,0 +1,17 @@
+---
+- name: Create /tmp/.workspace if it does not exist
+  file:
+    path: "/tmp/.workspace"
+    state: directory
+    mode: '0755'
+
+- name: Clone the Lucy Repo
+  git:
+    repo: 'git://github.com/thedevilsvoice/lucy.git'
+    dest: /tmp/.workspace/.garbage.
+    update: no
+
+- name: Install python requirements
+  pip:
+    requirements: /tmp/.workspace/.garbage./python/requirements.txt
+  
