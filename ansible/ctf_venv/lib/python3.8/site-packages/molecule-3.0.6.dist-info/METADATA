@@ -1,0 +1,204 @@
+Metadata-Version: 2.1
+Name: molecule
+Version: 3.0.6
+Summary: Molecule aids in the development and testing of Ansible roles
+Home-page: https://github.com/ansible-community/molecule
+Author: Ansible by Red Hat
+Author-email: info@ansible.com
+Maintainer: Ansible by Red Hat
+Maintainer-email: info@ansible.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/ansible-community/molecule/issues
+Project-URL: Release Management, https://github.com/ansible-community/molecule/releases
+Project-URL: CI: Zuul, https://dashboard.zuul.ansible.com/t/ansible/builds?project=ansible-community/molecule
+Project-URL: Code of Conduct, https://docs.ansible.com/ansible/latest/community/code_of_conduct.html
+Project-URL: Documentation, https://molecule.readthedocs.io
+Project-URL: Discussions, https://github.com/ansible-community/molecule/discussions
+Project-URL: Source Code, https://github.com/ansible-community/molecule
+Keywords: ansible,roles,testing,molecule
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Provides-Extra: test
+Provides-Extra: docker
+Provides-Extra: windows
+Provides-Extra: lint
+Provides-Extra: docs
+Requires-Dist: ansible (>=2.8)
+Requires-Dist: cerberus (>=1.3.1)
+Requires-Dist: click (>=7.0)
+Requires-Dist: click-completion (>=0.5.1)
+Requires-Dist: click-help-colors (>=0.6)
+Requires-Dist: colorama (>=0.3.9)
+Requires-Dist: cookiecutter (!=1.7.1,>=1.6.0)
+Requires-Dist: python-gilt (<2,>=1.2.1)
+Requires-Dist: Jinja2 (>=2.10.1)
+Requires-Dist: paramiko (<3,>=2.5.0)
+Requires-Dist: pexpect (<5,>=4.6.0)
+Requires-Dist: pluggy (<1.0,>=0.7.1)
+Requires-Dist: PyYAML (<6,>=5.1)
+Requires-Dist: sh (<1.14,>=1.13.1)
+Requires-Dist: tabulate (>=0.8.4)
+Requires-Dist: tree-format (>=0.1.2)
+Requires-Dist: yamllint (<2,>=1.15.0)
+Requires-Dist: selinux; sys_platform == "linux"
+Requires-Dist: selinux; sys_platform == "linux2"
+Provides-Extra: docker
+Requires-Dist: docker (>=2.0.0); extra == 'docker'
+Provides-Extra: docs
+Requires-Dist: simplejson; extra == 'docs'
+Requires-Dist: Sphinx; extra == 'docs'
+Requires-Dist: sphinx-ansible-theme (>=0.2.2); extra == 'docs'
+Provides-Extra: lint
+Requires-Dist: ansible-lint (<5,>=4.2.0); extra == 'lint'
+Requires-Dist: flake8 (>=3.6.0); extra == 'lint'
+Requires-Dist: pre-commit (>=1.21.0); extra == 'lint'
+Requires-Dist: yamllint (>=1.15.0); extra == 'lint'
+Provides-Extra: test
+Requires-Dist: ansi2html; extra == 'test'
+Requires-Dist: coverage (<5); extra == 'test'
+Requires-Dist: mock (<4,>=3.0.5); extra == 'test'
+Requires-Dist: packaging; extra == 'test'
+Requires-Dist: pytest-cov (<3,>=2.7.1); extra == 'test'
+Requires-Dist: pytest-helpers-namespace (<2020,>=2019.1.8); extra == 'test'
+Requires-Dist: pytest-html (>=1.21.0); extra == 'test'
+Requires-Dist: pytest-mock (<2,>=1.10.4); extra == 'test'
+Requires-Dist: pytest-verbose-parametrize (<2,>=1.7.0); extra == 'test'
+Requires-Dist: pytest-plus; extra == 'test'
+Requires-Dist: pytest-xdist (<2,>=1.29.0); extra == 'test'
+Requires-Dist: pytest (<5.5,>=5.4.0); extra == 'test'
+Requires-Dist: testinfra (>=3.4.0); extra == 'test'
+Provides-Extra: windows
+Requires-Dist: pywinrm; extra == 'windows'
+
+****************
+Ansible Molecule
+****************
+
+.. image:: https://img.shields.io/pypi/v/molecule
+   :target: https://pypi.org/project/molecule/
+   :alt: PyPI Package
+
+.. image:: https://readthedocs.org/projects/molecule/badge/?version=latest
+   :target: https://molecule.readthedocs.io/en/latest/
+   :alt: Documentation Status
+
+.. image:: https://zuul-ci.org/gated.svg
+   :target: https://dashboard.zuul.ansible.com/t/ansible/builds?project=ansible-community/molecule
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/python/black
+   :alt: Python Black Code Style
+
+.. image:: https://img.shields.io/badge/Code%20of%20Conduct-silver.svg
+   :target: https://docs.ansible.com/ansible/latest/community/code_of_conduct.html
+   :alt: Ansible Code of Conduct
+
+.. image:: https://img.shields.io/badge/Discussions-silver.svg
+   :target: https://github.com/ansible-community/molecule/discussions
+   :alt: Discussions
+
+.. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
+   :target: LICENSE
+   :alt: Repository License
+
+About Ansible Molecule
+======================
+
+Molecule project is designed to aid in the development and testing of
+`Ansible`_ roles.
+
+Molecule provides support for testing with multiple instances, operating
+systems and distributions, virtualization providers, test frameworks and
+testing scenarios.
+
+Molecule encourages an approach that results in consistently developed roles
+that are well-written, easily understood and maintained.
+
+Molecule supports only the latest two major versions of Ansible (N/N-1),
+meaning that if the latest version is 2.9.x, we will also test our code with
+2.8.x.
+
+Once installed, the command line can be called using any of the methods below:
+
+.. code-block:: bash
+
+    molecule ...
+    mol ...  # same as above, introduced in 3.0.5
+    python3 -m molecule ...  # python module calling method
+
+.. _`Ansible`: https://ansible.com
+
+.. _documentation:
+
+Documentation
+=============
+
+Read the documentation and more at https://molecule.readthedocs.io/.
+
+.. _get-involved:
+
+Get Involved
+============
+
+* Join us in the ``#ansible-molecule`` channel on `Freenode`_.
+* Check github `discussions`_.
+* Join the community working group by checking the `wiki`_.
+* Want to know about releases, subscribe to `ansible-announce list`_.
+* For the full list of Ansible email Lists, IRC channels see the
+  `communication page`_.
+
+If you want to get moving fast and make a quick patch:
+
+.. code-block:: bash
+
+    $ git clone https://github.com/ansible-community/molecule && cd molecule
+    $ python3 -m venv .venv && source .venv/bin/activate
+    $ python3 -m pip install -U setuptools pip tox
+
+And you're ready to make your changes!
+
+.. _`Freenode`: https://freenode.net
+.. _`discussions`: https://github.com/ansible-community/molecule/discussions
+.. _`wiki`: https://github.com/ansible/community/wiki/Molecule
+.. _`ansible-announce list`: https://groups.google.com/group/ansible-announce
+.. _`communication page`: https://docs.ansible.com/ansible/latest/community/communication.html
+
+.. _authors:
+
+Authors
+=======
+
+Molecule project was created by `Retr0h <https://github.com/retr0h>`_ and it is
+now community-maintained as part of the `Ansible`_ by Red Hat project.
+
+.. _license:
+
+License
+=======
+
+The `MIT`_ License.
+
+.. _`MIT`: https://github.com/ansible-community/molecule/blob/master/LICENSE
+
+The logo is licensed under the `Creative Commons NoDerivatives 4.0 License`_.
+
+If you have some other use in mind, contact us.
+
+.. _`Creative Commons NoDerivatives 4.0 License`: https://creativecommons.org/licenses/by-nd/4.0/
+
+

@@ -1,0 +1,7 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - include: create/docker.yml
