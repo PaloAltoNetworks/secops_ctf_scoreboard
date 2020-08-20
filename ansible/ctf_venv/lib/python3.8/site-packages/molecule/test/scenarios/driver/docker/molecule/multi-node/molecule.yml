@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance-1
+    image: ${TEST_BASE_IMAGE}
+    pre_build_image: true
+    groups:
+      - foo
+      - bar
+  - name: instance-2
+    image: ${TEST_BASE_IMAGE}
+    groups:
+      - foo
+      - baz
+    pre_build_image: true
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      callback_whitelist: profile_roles,profile_tasks,timer
+  playbooks:
+    create: ../../../../../resources/playbooks/docker/create.yml
+    destroy: ../../../../../resources/playbooks/docker/destroy.yml
+  env:
+    ANSIBLE_ROLES_PATH: ../../../../../resources/roles/
+scenario:
+  name: multi-node
+verifier:
+  name: ansible

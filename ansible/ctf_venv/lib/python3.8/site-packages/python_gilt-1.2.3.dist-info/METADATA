@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: python-gilt
+Version: 1.2.3
+Summary: gilt - A GIT layering tool.
+Home-page: https://github.com/retr0h/gilt
+Author: John Dewey
+Author-email: john@dewey.ws
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Requires-Dist: click
+Requires-Dist: colorama
+Requires-Dist: fasteners
+Requires-Dist: PyYAML
+Requires-Dist: sh
+Provides-Extra: test
+Requires-Dist: black (==19.10b0) ; extra == 'test'
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: hacking ; extra == 'test'
+Requires-Dist: pep517 ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-helpers-namespace ; extra == 'test'
+Requires-Dist: pytest-mock ; extra == 'test'
+Requires-Dist: twine ; extra == 'test'
+
+UNKNOWN
+
+

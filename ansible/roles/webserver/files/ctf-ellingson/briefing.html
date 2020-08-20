@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	This was created for the SKO'21 CTF by Sandra Wenzel
+-->
+<html>
+
+<head>
+	<title>Internal Threat Briefings</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="subpage">
+
+	<!-- Header -->
+	<header id="header">
+		<div class="logo"><a href="index.html">Ellingson Mineral Corp</a></div>
+		<a href="#menu">Menu</a>
+	</header>
+
+	<!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="briefing.html">Threat Briefings</a></li>
+			<li><a href="about.html">About Us</a></li>
+		</ul>
+	</nav>
+
+	<!-- Banner -->
+	<section id="reports_banner">
+		<div class="inner"></div>
+		<header>
+			<h1>Threat Intelligence Briefings</h1>
+			<p>There is no right or wrong, only fun and boring</p>
+		</header>
+	</section>
+
+
+	<!-- Main -->
+	<div id="main">
+		<section class="wrapper style1"></section>
+		<div class="inner">
+
+			<header class="align-center">
+				<p>*** AUTHORIZED USE ONLY ***</p>
+				<p>The information on this server and network is the property of this organization and is protected by
+					intellectual property rights. You must be assigned an account on this computer to access information
+					and are only allowed to access information defined by the system administrators. Your activities
+					will be monitored!
+			</header>
+		</div>
+
+		<!-- Login Form -->
+		<ul onclick="document.getElementById('id01').style.display='block'" />
+		<li><a class="button fit">Login</a></li>
+
+		<!-- The Modal -->
+		<div id="id01" class="modal">
+			<span onclick="document.getElementById('id01').style.display='block'" class="close"
+				title="Close Modal">&times;</span>
+
+			<!-- Modal Content -->
+			<form class="modal-content animate" action="/action_page.php" method="get"
+				onsubmit="submitAuthForm(); return false">
+				<div class="imgcontainer">
+					<img src="images/mess.png" alt="h4ck3d" class="align-center">
+				</div>
+
+				<div class="container">
+					<label for="pword"><b>59 4f 55 5f 41 52 45 5f 54 45 52 4d 49 4e 41 54 45 44 2e 3c 33 2e 41 63 69 64
+							2e 42 75 72 6e</b></label>
+					<input type="password" placeholder="Enter Password" name="pword" id="pword" required />
+					<button type="submit">Submit</button>
+
+				</div>
+			</form>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="copyright">
+				<ul class="icons">
+					<li><a href="https://twitter.com/EllingsonCorp" class="icon fa-twitter"><span
+								class="label">Twitter</span></a></li>
+					<li><a href="https://www.facebook.com/Ellingson-Mineral-Corporation-375714929157284"
+							class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+				</ul>
+				<p>&copy; Capture the Flag SKO'21 | Consulting Engineering, SecOps
+					<br>All rights reserved.
+					<br>Design: @malwaremama</a></p>
+			</div>
+		</footer>
+
+
+
+		<!-- Scripts -->
+		<script>
+			// Submit Form/Auth
+			function submitAuthForm() {
+			  var pass = document.getElementById('pword').value;
+			  pass = btoa(pass);
+			  location = location.href.replace('briefing', pass);
+			  location.href;
+			}
+		</script>
+
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

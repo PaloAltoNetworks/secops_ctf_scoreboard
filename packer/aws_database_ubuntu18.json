@@ -1,0 +1,45 @@
+{
+    "variables": {
+      "aws_access_key": "",
+      "aws_secret_key": ""
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "us-west-2",
+        "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+            "root-device-type": "ebs"
+          },
+          "owners": [
+            "099720109477"
+          ],
+          "most_recent": true
+        },
+        "instance_type": "t2.micro",
+        "ssh_username": "ubuntu",
+        "ami_name": "secops-ctf-attacker {{timestamp}}",
+        "tags": {
+          "Name": "Packer-Ansible",
+          "Project": "Secops-CTF",
+          "Commit": "unknown"
+        }
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+        "inline": [
+          "mkdir -p /home/ubuntu/.ssh",
+          "chmod 700 /home/ubuntu/.ssh",
+          "cd /home/ubuntu && git clone https://github.com/wwce/secops_ctf.git",
+          "cp /home/ubuntu/secops_ctf/packer/files/authorized_keys /home/ubuntu/.ssh",
+          "chown -R ubuntu /home/ubuntu"
+      ]}
+    ]
+  }

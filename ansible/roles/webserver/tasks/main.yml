@@ -1,0 +1,26 @@
+---
+- name: Include variables
+  include_vars:
+    file: main.yml
+
+- name: Set up some system packages
+  include: packages.yml
+
+- name: Clone the Game Repo
+  git:
+    repo: 'git://github.com/PaloAltoNetworks/ctf_game.git'
+    dest: /home/ubuntu/ctf_game
+    update: no
+
+- name: Install python requirements
+  pip:
+    requirements: /home/ubuntu/ctf_game/python/requirements.txt
+  
+- name: Set up the gopher challenge
+  include: gopher.yml
+
+- name: Set up the web site
+  include: sandy_website.yml
+
+- name: Set up the Coin Miner
+  include: coinminer.yml

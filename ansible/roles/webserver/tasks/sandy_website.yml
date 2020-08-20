@@ -1,0 +1,87 @@
+---
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Install the Ellingson Mineral Website Files
+  copy: src=files/ctf-ellingson/{{ item }} dest="{{ http_install_dir }}"
+  with_items:
+    - about.html
+    - briefing.html
+    - index.html
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}/assets"
+    state: directory
+    mode: '0755'
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}/assets/css"
+    state: directory
+    mode: '0755'
+
+- name: Install the asset Files
+  copy: src=files/ctf-ellingson/assets/css/{{ item }} dest="{{ http_install_dir }}/assets/css"
+  with_items:
+    - font-awesome.min.css
+    - main.css
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}/assets/fonts"
+    state: directory
+    mode: '0755'
+
+- name: Install the font Files
+  copy: src=files/ctf-ellingson/assets/fonts/{{ item }} dest="{{ http_install_dir }}/assets/fonts"
+  with_items:
+    - FontAwesome.otf
+    - fontawesome-webfont.eot
+    - fontawesome-webfont.svg
+    - fontawesome-webfont.ttf
+    - fontawesome-webfont.woff
+    - fontawesome-webfont.woff2
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}/assets/js"
+    state: directory
+    mode: '0755'
+
+- name: Install the js Files
+  copy: src=files/ctf-ellingson/assets/js/{{ item }} dest="{{ http_install_dir }}/assets/js"
+  with_items:
+    - jquery.min.js
+    - jquery.scrollex.min.js
+    - jquery.scrolly.min.js
+    - main.js
+    - skel.min.js
+    - util.js
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ http_install_dir }}/images"
+    state: directory
+    mode: '0755'
+
+- name: Install the images
+  copy: src=files/ctf-ellingson/images/{{ item }} dest="{{ http_install_dir }}/images"
+  with_items:
+    - banner.jpg
+    - code.jpg
+    - duke.jpg
+    - emclogo.jpg
+    - eugene.jpg
+    - hal.jpg
+    - margo.jpg
+    - mess.png
+
+- name: ensure apache is running
+  service:
+    name: apache2
+    state: started
+  when: SECOPS_MOLECULE_TEST is not defined
