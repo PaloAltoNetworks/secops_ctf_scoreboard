@@ -33,3 +33,4 @@ aws/*.out
 packer/packer*
 docs/_build
 .envrc
+ansible/ctf_venv
