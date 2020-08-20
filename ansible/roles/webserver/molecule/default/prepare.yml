@@ -1,0 +1,17 @@
+---
+- name: Prepare
+  hosts: all
+  vars:
+    SECOPS_MOLECULE_TEST: "true"
+  gather_facts: False
+  tasks:
+  - name: Create /etc/pygopherd directory if it does not exist
+    file:
+      path: "/etc/pygopherd"
+      state: directory
+      mode: '0755'
+  - name: Create /var/gopher directory if it does not exist
+    file:
+      path: "/var/gopher"
+      state: directory
+      mode: '0755'

@@ -1,0 +1,46 @@
+---
+- name: 'Update APT package cache'
+  apt:
+    update_cache: yes
+    upgrade: safe
+  tags: admin
+
+- name: Install Apache 2.x
+  apt:
+    package: "apache2"
+    state: latest
+  tags: admin
+
+- name: Python3 pip
+  apt:
+    package: "python3-pip"
+    state: latest
+  tags: admin
+
+- name: check if pip file exists
+  stat: 
+    path: /usr/bin/pip
+  register: pip_exist
+
+- name: Create symbolic link so Ansible can find pip3
+  file:
+    src: /usr/bin/pip3
+    dest: /usr/bin/pip
+    state: link
+  when: pip_exist.stat.exists == False
+
+- name: Python3 setuptools
+  apt:
+    package: "python3-setuptools"
+    state: latest
+  tags: admin
+
+- name: install git
+  apt:
+    package: "git"
+    state: latest
+  tags: admin
+
+- name: pip install docker
+  pip:
+    name: "docker"

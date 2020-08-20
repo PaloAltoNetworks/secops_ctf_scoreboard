@@ -32,5 +32,5 @@ override.tf.json
 aws/*.out
 packer/packer*
 docs/_build
-#.envrc
+.envrc
 ansible/ctf_venv

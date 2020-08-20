@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    SECOPS_MOLECULE_TEST: "true"
+  tasks:
+    - name: Set up webserver
+      import_role:
+        name: webserver
+#    - name: Set up Python
+#      import_role:
+#        name: python
