@@ -1,2 +1,3 @@
 pandoc
 sphinx_rtd_theme
+aws2-wrap
