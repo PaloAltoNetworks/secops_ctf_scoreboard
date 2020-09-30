@@ -6,20 +6,10 @@
   "builders": [
     {
       "type": "amazon-ebs",
-      "access_key": "{{user `aws_access_key`}}",
-      "secret_key": "{{user `aws_secret_key`}}",
-      "region": "us-west-2",
-      "source_ami_filter": {
-        "filters": {
-          "virtualization-type": "hvm",
-          "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
-          "root-device-type": "ebs"
-        },
-        "owners": [
-          "099720109477"
-        ],
-        "most_recent": true
-      },
+      "access_key": "{{user `AWS_ACCESS_KEY_ID`}}",
+      "secret_key": "{{user `AWS_SECRET_ACCESS_KEY`}}",
+      "region": "us-east-2",
+      "source_ami" : "ami-0a35dcc4aa0574b59",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
       "ami_name": "secops-ctf-scoreboard {{timestamp}}",
@@ -37,7 +27,7 @@
       "inline": [
         "mkdir -p /home/ubuntu/.ssh",
         "chmod 700 /home/ubuntu/.ssh",
-        "cd /home/ubuntu && git clone https://github.com/wwce/ctf_scoreboard.git",
+        "cd /home/ubuntu && git clone https://github.com/PaloAltoNetworks/ctf_scoreboard.git",
         "cp /home/ubuntu/ctf_scoreboard/packer/authorized_keys /home/ubuntu/.ssh",
         "chown -R ubuntu /home/ubuntu",
         "cp /home/ubuntu/ctf_scoreboard/packer/ctfd.service /etc/systemd/system"
