@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: GIBSON
+    hostname: gibson
+    image: ubuntu:latest
+    # Do note that running containers in privileged mode is considerably less secure.
+    privileged: true
+    env:
+      SECOPS_MOLECULE_TEST: "true"
+provisioner:
+  name: ansible
+  log: true
+scenario:
+  become: true
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+    - destroy
+verifier:
+  name: testinfra
+  env:
+    PYTHONWARNINGS: "ignore:.*U.*mode is deprecated:DeprecationWarning"
