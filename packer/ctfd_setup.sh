@@ -6,22 +6,27 @@
 #        AUTHOR: Franklin Diaz (fdiaz@paloaltonetworks.com), 
 #  ORGANIZATION: 
 #       CREATED: 03/31/2020 16:42
-#      REVISION:  0.1
+#      REVISION:  0.2
 #============================================================
 #!/bin/bash - 
 if [ ! -d "/home/ubuntu/CTFd" ]; then
   cd /home/ubuntu && git clone https://github.com/CTFd/CTFd.git
   cd /home/ubuntu/CTFd && sudo bash prepare.sh
+  sudo apt -y install docker-compose
   sudo bash /home/ubuntu/CTFd/scripts/install_docker.sh
   sudo chmod a+rw /var/run/docker.sock
 fi
 if [[ $(pip) ]]; then
-  echo "found pip"
+  echo "found pip2"
 else
-  sudo DEBIAN_FRONTEND=noninteractive apt install -y python-dev python-pip
-  # Setuptools v45.0.0 breaks virtualenv on Python 2
-  # https://github.com/pypa/virtualenv/issues/1493
-  sudo pip install --upgrade 'setuptools<45.0.0'
+  sudo add-apt-repository universe
+  sudo apt update 
+  sudo apt -y install python2
+  curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+  sudo python2 get-pip.py
+fi
+if [[ $(pip3) ]]; then
+  sudo apt -y install python3-pip
 fi
 if [[ $(docker ps | grep -v COMMAND) ]]; 
 then
@@ -29,5 +34,5 @@ then
   exit 0
 else
   echo "starting docker"
-  docker run -d --rm -p 8000:8000 -it ctfd/ctfd
+  sudo docker run -d --rm -p 8000:8000 -it ctfd/ctfd
 fi
