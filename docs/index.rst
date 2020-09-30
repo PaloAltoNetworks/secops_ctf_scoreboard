@@ -26,6 +26,7 @@ SecOps CTF Scoreboard documentation
    :caption: operation
 
    operation/mac_quickstart
+   operation/new_sso
    operation/licensing
    operation/hardening
 

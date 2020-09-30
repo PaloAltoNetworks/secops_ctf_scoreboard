@@ -38,13 +38,13 @@ docs: python ## Generate documentation
 	#sphinx-quickstart
 	cd docs && make html
 
-packer: python ## Build and amazon AMI for the scoreboard
+packer: python ## Build an Amazon AMI for the scoreboard
 	@if [ ! -f /.dockerenv ]; then echo "Run make packer inside docker container" && exit 1; fi
 	$(MAKE) print-status MSG="Validate Packer Configuration..."
-	if [ ! -f /tmp/project/packer/pacler ]; then cd /tmp/project/packer && wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip && unzip /tmp/project/packer/packer_1.5.5_linux_amd64.zip; fi
+	if [ ! -f /tmp/project/packer/packer ]; then cd /tmp/project/packer && wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip && unzip /tmp/project/packer/packer_1.5.5_linux_amd64.zip; fi
 	/tmp/project/packer/packer validate /tmp/project/packer/scoreboard.json
 	#$(MAKE) print-status MSG="Build AMI with Packer..."
-	#/tmp/project/packer build scoreboard.json
+	#/tmp/project/packer/packer build packer/scoreboard.json
 
 print-status:
 	@:$(call check_defined, MSG, Message to print)
