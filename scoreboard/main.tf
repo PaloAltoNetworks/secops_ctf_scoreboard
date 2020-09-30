@@ -25,7 +25,7 @@ data "aws_ami" "ctf_scoreboard_ami" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-  
+
   filter {
     name = "owner-alias"
 
@@ -66,7 +66,7 @@ module "ec2" {
   associate_public_ip_address = true
   tags = {
     Name        = "scoreboard"
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "CTF-Scoreboard"
   }
 }
