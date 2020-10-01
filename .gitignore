@@ -29,7 +29,7 @@ override.tf.json
 # example: *tfplan*
 
 .vscode
-aws/*.out
+*.out
 packer/packer*
 docs/_build
 .envrc
