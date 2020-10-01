@@ -6,7 +6,7 @@ Introduction
    :align: center
 
 Overview
-  This is the scoreboard for the SecOps CTF.
+  This is the Infra as Code for the SecOps CTF.
 
 Description
   The goal is to have a fun contest where participants
