@@ -54,6 +54,7 @@ module "ec2" {
   subnet_id                   = tolist(data.aws_subnet_ids.all.ids)[0]
   vpc_security_group_ids      = [module.security_group.this_security_group_id]
   associate_public_ip_address = true
+
   tags = {
     Name        = "scoreboard"
     Terraform   = "true"
@@ -61,3 +62,12 @@ module "ec2" {
   }
 }
 
+module "gibson" {
+  source = "./modules/gibson"
+
+  gibson_ami                         = var.ami
+  gibson_instance_type               = "t2.micro"
+  gibson_subnet_id                   = tolist(data.aws_subnet_ids.all.ids)[0]
+  gibson_vpc_security_group_ids      = [module.security_group.this_security_group_id]
+  gibson_associate_public_ip_address = true
+}
