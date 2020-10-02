@@ -61,3 +61,12 @@ module "ec2" {
   }
 }
 
+module "gibson" {
+  source = "./modules/gibson"
+
+  gibson_ami                         = "ami-0a35dcc4aa0574b59"
+  gibson_instance_type               = "t2.micro"
+  gibson_subnet_id                   = tolist(data.aws_subnet_ids.all.ids)[0]
+  gibson_vpc_security_group_ids      = [module.security_group.this_security_group_id]
+  gibson_associate_public_ip_address = true
+}
