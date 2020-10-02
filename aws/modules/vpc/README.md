@@ -1,3 +1,0 @@
-# vpc
-
-Configure the VPCs.
