@@ -1,7 +1,9 @@
+/*
 output "public_ip" {
   description = "List of public IP addresses assigned to the instances, if applicable"
   value       = module.ec2.aws_instance.this[0].public_ip
 }
+*/
 
 /**
  *  Copyright 2019 Palo Alto Networks.
