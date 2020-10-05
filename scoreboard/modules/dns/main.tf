@@ -1,3 +1,7 @@
+/*
+ * Creating zone as detail here:
+ * https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html#migrate-dns-create-hosted-zone-domain-inactive
+ */
 resource "aws_route53_zone" "secops-ctf-zone" {
   name = "ellingson.io"
   vpc {
@@ -5,6 +9,7 @@ resource "aws_route53_zone" "secops-ctf-zone" {
   }
 }
 
+/*
 resource "aws_route53_record" "secops-ctf-record" {
   count   = length(var.dns_hostname)
   name    = element(var.dns_hostname, count.index)
@@ -13,6 +18,7 @@ resource "aws_route53_record" "secops-ctf-record" {
   type    = "A"
   ttl     = "300"
 }
+*/
 
 /**
  *  Copyright 2019 Palo Alto Networks.

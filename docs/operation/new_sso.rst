@@ -11,8 +11,9 @@ account and request a new pan-lab account via JIRA at:
 All new requests for an AWS account come with pre-baked security
 controls such as Okta Universal by default.
 
-Just select the "AWS - New Account" issue type; you will need 
-the following information to complete the ticket and request:
+Under  Infrastructure Security Requests, select the "AWS - New Account" 
+issue type; you will need the following information to complete the ticket 
+and request:
 
 - Business Unit (this can be found in Workday under My Team > Organizations I Belong To)
 - Cost Center (same as above)
