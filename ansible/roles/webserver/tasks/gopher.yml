@@ -1,5 +1,4 @@
 ---
-
 # https://prgmr.com/blog/gopher/2018/11/09/setting-up-gopherserver.html
 
 - shell: host myip.opendns.com resolver1.opendns.com | grep address | cut -d' ' -f4
@@ -13,9 +12,10 @@
 
 - name: Gopher Server
   apt:
-    package: "pygopherd"
+    package: 'pygopherd'
     state: latest
   when: SECOPS_MOLECULE_TEST is not defined
+  tags: admin
 
 - name: Template pygopherd.conf
   template:
