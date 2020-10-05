@@ -71,3 +71,30 @@ module "gibson" {
   gibson_vpc_security_group_ids      = [module.security_group.this_security_group_id]
   gibson_associate_public_ip_address = true
 }
+
+module "dns" {
+  source = "./modules/dns"
+
+  dns_vpc      = data.aws_vpc.default.id
+  dns_hostname = ["scoreboard", "gibson"]
+  dns_arecord = [
+
+  ]
+}
+
+/**
+ *  Copyright 2019 Palo Alto Networks.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 

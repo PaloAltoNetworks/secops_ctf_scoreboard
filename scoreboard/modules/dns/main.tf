@@ -1,28 +1,24 @@
-variable "gibson_ami" {
-  description = "Which AMI to use for this instance"
-  type        = string
+/*
+ * Creating zone as detail here:
+ * https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html#migrate-dns-create-hosted-zone-domain-inactive
+ */
+resource "aws_route53_zone" "secops-ctf-zone" {
+  name = "ellingson.io"
+  vpc {
+    vpc_id = var.dns_vpc
+  }
 }
 
-variable "gibson_instance_type" {
-  description = ""
-  type        = string
+/*
+resource "aws_route53_record" "secops-ctf-record" {
+  count   = length(var.dns_hostname)
+  name    = element(var.dns_hostname, count.index)
+  records = element(var.dns_arecord, count.index)
+  zone_id = aws_route53_zone.secops-ctf-zone.id
+  type    = "A"
+  ttl     = "300"
 }
-
-variable "gibson_subnet_id" {
-  description = ""
-  type        = string
-}
-
-variable "gibson_vpc_security_group_ids" {
-  description = ""
-  type        = list
-}
-
-
-variable "gibson_associate_public_ip_address" {
-  description = ""
-  type        = string
-}
+*/
 
 /**
  *  Copyright 2019 Palo Alto Networks.
@@ -39,4 +35,3 @@ variable "gibson_associate_public_ip_address" {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 

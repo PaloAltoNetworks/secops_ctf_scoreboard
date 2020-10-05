@@ -1,27 +1,16 @@
-variable "gibson_ami" {
-  description = "Which AMI to use for this instance"
+variable "dns_vpc" {
+  description = "VPC ID to use for DNS setup"
   type        = string
 }
 
-variable "gibson_instance_type" {
-  description = ""
-  type        = string
-}
-
-variable "gibson_subnet_id" {
-  description = ""
-  type        = string
-}
-
-variable "gibson_vpc_security_group_ids" {
-  description = ""
+variable "dns_hostname" {
+  description = "List of hostnames to associate with our ec2 instances"
   type        = list
 }
 
-
-variable "gibson_associate_public_ip_address" {
+variable "dns_arecord" {
   description = ""
-  type        = string
+  type        = list
 }
 
 /**
@@ -39,4 +28,3 @@ variable "gibson_associate_public_ip_address" {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
