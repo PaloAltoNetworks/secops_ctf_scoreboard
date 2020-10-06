@@ -3,7 +3,7 @@
  * https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html#migrate-dns-create-hosted-zone-domain-inactive
  */
 
- // Public DNS
+// Public DNS
 resource "aws_route53_zone" "secops-ctf-zone-public" {
   name = "ellingson.io"
 }
