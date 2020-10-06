@@ -9,16 +9,36 @@ resource "aws_route53_zone" "secops-ctf-zone" {
   }
 }
 
-/*
 resource "aws_route53_record" "secops-ctf-record" {
-  count   = length(var.dns_hostname)
-  name    = element(var.dns_hostname, count.index)
-  records = element(var.dns_arecord, count.index)
-  zone_id = aws_route53_zone.secops-ctf-zone.id
+  allow_overwrite = true
+  name            = "ellingson.io"
+  ttl             = 30
+  type            = "NS"
+  zone_id         = aws_route53_zone.secops-ctf-zone.zone_id
+
+  records = [
+    aws_route53_zone.secops-ctf-zone.name_servers[0],
+    aws_route53_zone.secops-ctf-zone.name_servers[1],
+    aws_route53_zone.secops-ctf-zone.name_servers[2],
+    aws_route53_zone.secops-ctf-zone.name_servers[3],
+  ]
+}
+
+resource "aws_route53_record" "gibson" {
+  zone_id = aws_route53_zone.secops-ctf-zone.zone_id
+  name    = "gibson.ellingson.io"
   type    = "A"
   ttl     = "300"
+  records = var.dns_arecord[0]
 }
-*/
+
+resource "aws_route53_record" "scoreboard" {
+  zone_id = aws_route53_zone.secops-ctf-zone.zone_id
+  name    = "scoreboard.ellingson.io"
+  type    = "A"
+  ttl     = "300"
+  records = var.dns_arecord[1]
+}
 
 /**
  *  Copyright 2019 Palo Alto Networks.

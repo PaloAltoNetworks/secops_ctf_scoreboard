@@ -78,7 +78,8 @@ module "dns" {
   dns_vpc      = data.aws_vpc.default.id
   dns_hostname = ["scoreboard", "gibson"]
   dns_arecord = [
-
+    module.gibson.gibson_public_ip,
+    module.ec2.public_ip
   ]
 }
 
