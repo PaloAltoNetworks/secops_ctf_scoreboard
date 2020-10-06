@@ -2,11 +2,10 @@
  * Creating zone as detail here:
  * https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html#migrate-dns-create-hosted-zone-domain-inactive
  */
-resource "aws_route53_zone" "secops-ctf-zone" {
+
+ // Public DNS
+resource "aws_route53_zone" "secops-ctf-zone-public" {
   name = "ellingson.io"
-  vpc {
-    vpc_id = var.dns_vpc
-  }
 }
 
 resource "aws_route53_record" "secops-ctf-record" {
@@ -14,7 +13,7 @@ resource "aws_route53_record" "secops-ctf-record" {
   name            = "ellingson.io"
   ttl             = 30
   type            = "NS"
-  zone_id         = aws_route53_zone.secops-ctf-zone.zone_id
+  zone_id         = aws_route53_zone.secops-ctf-zone-public.zone_id
 
   records = [
     aws_route53_zone.secops-ctf-zone.name_servers[0],
@@ -25,7 +24,7 @@ resource "aws_route53_record" "secops-ctf-record" {
 }
 
 resource "aws_route53_record" "gibson" {
-  zone_id = aws_route53_zone.secops-ctf-zone.zone_id
+  zone_id = aws_route53_zone.secops-ctf-zone-public.zone_id
   name    = "gibson.ellingson.io"
   type    = "A"
   ttl     = "300"
@@ -33,11 +32,19 @@ resource "aws_route53_record" "gibson" {
 }
 
 resource "aws_route53_record" "scoreboard" {
-  zone_id = aws_route53_zone.secops-ctf-zone.zone_id
+  zone_id = aws_route53_zone.secops-ctf-zone-public.zone_id
   name    = "scoreboard.ellingson.io"
   type    = "A"
   ttl     = "300"
   records = var.dns_arecord[1]
+}
+
+// Private DNS
+resource "aws_route53_zone" "secops-ctf-zone" {
+  name = "ellingson.io"
+  vpc {
+    vpc_id = var.dns_vpc
+  }
 }
 
 /**
