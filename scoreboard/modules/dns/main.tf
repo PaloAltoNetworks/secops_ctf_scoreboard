@@ -2,23 +2,50 @@
  * Creating zone as detail here:
  * https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html#migrate-dns-create-hosted-zone-domain-inactive
  */
+
+// Public DNS
+resource "aws_route53_zone" "secops-ctf-zone-public" {
+  name = "ellingson.io"
+}
+
+resource "aws_route53_record" "secops-ctf-record" {
+  allow_overwrite = true
+  name            = "ellingson.io"
+  ttl             = 30
+  type            = "NS"
+  zone_id         = aws_route53_zone.secops-ctf-zone-public.zone_id
+
+  records = [
+    aws_route53_zone.secops-ctf-zone.name_servers[0],
+    aws_route53_zone.secops-ctf-zone.name_servers[1],
+    aws_route53_zone.secops-ctf-zone.name_servers[2],
+    aws_route53_zone.secops-ctf-zone.name_servers[3],
+  ]
+}
+
+resource "aws_route53_record" "gibson" {
+  zone_id = aws_route53_zone.secops-ctf-zone-public.zone_id
+  name    = "gibson.ellingson.io"
+  type    = "A"
+  ttl     = "300"
+  records = var.dns_arecord[0]
+}
+
+resource "aws_route53_record" "scoreboard" {
+  zone_id = aws_route53_zone.secops-ctf-zone-public.zone_id
+  name    = "scoreboard.ellingson.io"
+  type    = "A"
+  ttl     = "300"
+  records = var.dns_arecord[1]
+}
+
+// Private DNS
 resource "aws_route53_zone" "secops-ctf-zone" {
   name = "ellingson.io"
   vpc {
     vpc_id = var.dns_vpc
   }
 }
-
-/*
-resource "aws_route53_record" "secops-ctf-record" {
-  count   = length(var.dns_hostname)
-  name    = element(var.dns_hostname, count.index)
-  records = element(var.dns_arecord, count.index)
-  zone_id = aws_route53_zone.secops-ctf-zone.id
-  type    = "A"
-  ttl     = "300"
-}
-*/
 
 /**
  *  Copyright 2019 Palo Alto Networks.
