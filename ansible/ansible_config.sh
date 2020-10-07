@@ -23,4 +23,4 @@ function gopher_setup {
 
 ansible_setup
 gopher_setup
-ansible-playbook --connection=local /home/ubuntu/ctf_scoreboard/ansible/webserver.yml
+ansible-playbook --connection=local /home/ubuntu/secops_ctf/ansible/webserver.yml
