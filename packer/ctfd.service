@@ -5,7 +5,7 @@ Type=simple
 Restart=always
 RestartSec=10
 User=ubuntu
-ExecStart=/home/ubuntu/ctf_scoreboard/packer/ctfd_setup.sh
+ExecStart=/home/ubuntu/secops_ctf/packer/ctfd_setup.sh
 ExecStop=/usr/bin/docker stop -t 2 `docker ps | grep -v COMMAND | cut -f1 -d' '`
 [Install]
 WantedBy=multi-user.target
