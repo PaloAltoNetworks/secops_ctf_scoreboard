@@ -7,7 +7,4 @@ WORKDIR /tmp/project
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y dialog apt-utils
 RUN DEBIAN_FRONTEND=noninteractive apt install -y wget unzip
 RUN DEBIAN_FRONTEND=noninteractive apt install -y python3-setuptools python3-pip
-
-RUN make docs
-
 EXPOSE 8000
