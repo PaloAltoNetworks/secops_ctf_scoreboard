@@ -34,3 +34,6 @@ packer/packer*
 docs/_build
 .envrc
 ansible/ctf_venv
+
+CTFd
+result
