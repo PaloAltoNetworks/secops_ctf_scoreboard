@@ -8,7 +8,7 @@
 #       CREATED: 03/31/2020 16:42
 #      REVISION:  0.2
 #============================================================
-#!/bin/bash - 
+
 if [ ! -d "/home/ubuntu/CTFd" ]; then
   cd /home/ubuntu && git clone https://github.com/CTFd/CTFd.git
   cd /home/ubuntu/CTFd && sudo bash prepare.sh
