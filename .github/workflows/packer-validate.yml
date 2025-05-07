@@ -11,9 +11,9 @@
   
       steps:
         - name: Checkout Repository
-          uses: actions/checkout@v2
+          uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
         - name: Python setup
-          uses: actions/setup-python@v1
+          uses: actions/setup-python@0f07f7f756721ebd886c2462646a35f78a8bc4de # v1
           with:
             python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
             architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
@@ -22,14 +22,14 @@
 
         # fix backwards incompatibilities in template
         - name: Fix Template
-          uses: operatehappy/packer-github-actions@master
+          uses: hashicorp/setup-packer@76e3039aa951aa4e6efe7e6ee06bc9ceb072142d # master
           with:
             command: fix
             target: packer/scoreboard.json
   
         # validate templates
         - name: Validate Template
-          uses: operatehappy/packer-github-actions@master
+          uses: hashicorp/setup-packer@76e3039aa951aa4e6efe7e6ee06bc9ceb072142d # master
           with:
             command: validate
             arguments: -syntax-only
